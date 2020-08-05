@@ -7,7 +7,7 @@ namespace nc
 	{
 		m_renderer = renderer;
 
-		SDL_Surface* surface = SDL_LoadBMP(name.c_str());
+		SDL_Surface* surface = IMG_Load(name.c_str());
 		if (surface == nullptr)
 		{
 			return false;

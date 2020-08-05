@@ -9,6 +9,8 @@ int main(int, char**)
 		return 1;
 	}
 
+	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
+
 	SDL_Window* window = SDL_CreateWindow("GAT150", 100, 100, 800, 600, SDL_WINDOW_SHOWN);
 	if (window == nullptr) 
 	{
@@ -37,7 +39,7 @@ int main(int, char**)
 
 	// texture
 	nc::Texture texture;
-	texture.Create("sf2.bmp", renderer);
+	texture.Create("sf2.png", renderer);
 	float angle{ 0 };
 
 	SDL_Event event;
@@ -79,6 +81,7 @@ int main(int, char**)
 		SDL_RenderPresent(renderer);
 	}
 
+	IMG_Quit();
 	SDL_Quit();
 
 	return 0;
