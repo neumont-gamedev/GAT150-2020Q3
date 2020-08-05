@@ -1,5 +1,10 @@
+#include "Resources/ResourceManager.h"
+#include "Graphics/Texture.h"
 #include <iostream>
+#include <SDL_image.h>
 #include <SDL.h>
+
+nc::ResourceManager resourceManager;
 
 int main(int, char**)
 {
@@ -8,6 +13,8 @@ int main(int, char**)
 		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
 		return 1;
 	}
+
+	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 
 	SDL_Window* window = SDL_CreateWindow("GAT150", 100, 100, 800, 600, SDL_WINDOW_SHOWN);
 	if (window == nullptr) 
@@ -35,6 +42,8 @@ int main(int, char**)
 	memset(pixels, 128, width * height * sizeof(Uint32));
 	SDL_UpdateTexture(texture1, NULL, pixels, width * sizeof(Uint32));
 
+	nc::Texture* texture3 = resourceManager.Get<nc::Texture>("sf2.png", renderer);
+	nc::Texture* texture4 = resourceManager.Get<nc::Texture>("sf2.png", renderer);
 
 	SDL_Surface* surface = SDL_LoadBMP("sf2.bmp");
 	if (surface == nullptr)
@@ -60,7 +69,7 @@ int main(int, char**)
 		SDL_RenderClear(renderer);
 
 		// draw
-		for (size_t i = 0; i < width * height; i++)
+		for (int i = 0; i < width * height; i++)
 		{
 			Uint8 c = rand() % 256;
 			pixels[i] = (c << 24 | c << 16 | c << 8);
@@ -82,13 +91,12 @@ int main(int, char**)
 		rect2.x = 20;
 		rect2.y = 20;
 		SDL_QueryTexture(texture2, NULL, NULL, &rect2.w, &rect2.h);
-
 		SDL_RenderCopy(renderer, texture2, NULL, &rect2);
+
+		texture3->Draw({ 100, 100 }, { 1, 1 }, 0.0f);
 
 		SDL_RenderPresent(renderer);
 	}
-
-
 
 	SDL_Quit();
 

@@ -7,7 +7,15 @@
 #ifndef PCH_H
 #define PCH_H
 
-// add headers that you want to pre-compile here
 #include "framework.h"
+#include <SDL.h>
+#include <SDL_image.h>
+
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <list>
+#include <map>
 
 #endif //PCH_H
