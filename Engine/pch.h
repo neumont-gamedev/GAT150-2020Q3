@@ -8,6 +8,15 @@
 #define PCH_H
 
 #include "framework.h"
+#include <SDL.h>
+#include <SDL_image.h>
+
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <list>
+#include <map>
 
 #include <SDL.h>
 
