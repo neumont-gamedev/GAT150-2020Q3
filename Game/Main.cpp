@@ -1,5 +1,7 @@
-#include <iostream>
+#include "Graphics/Texture.h"
+
 #include <SDL.h>
+#include <iostream>
 
 int main(int, char**)
 {
@@ -32,14 +34,9 @@ int main(int, char**)
 	memset(pixels, 255, width * height * sizeof(Uint32)); // (255, 255, 255, 255) (255, 255, 255, 255)
 	SDL_UpdateTexture(texture, NULL, pixels, width * sizeof(Uint32));
 
-	SDL_Surface* surface = SDL_LoadBMP("sf2.bmp");
-	if (surface == nullptr)
-	{
-		std::cout << "Error: " << SDL_GetError() << std::endl;
-		SDL_Quit();
-		return 1;
-	}
-	SDL_Texture* texture2 = SDL_CreateTextureFromSurface(renderer, surface);
+	nc::Texture texture2;
+	texture2.Create("sf2.bmp", renderer);
+	float angle{ 0 };
 
 	SDL_Event event;
 	bool quit = false;
@@ -74,12 +71,8 @@ int main(int, char**)
 		rect.h = height;
 		SDL_RenderCopy(renderer, texture, NULL, &rect);
 
-
-		SDL_Rect rect2;
-		rect2.x = 20;
-		rect2.y = 20;
-		SDL_QueryTexture(texture2, NULL, NULL, &rect2.w, &rect2.h);
-		SDL_RenderCopy(renderer, texture2, NULL, &rect2);
+		angle = angle + 1;
+		texture2.Draw({ 500, 100 }, { 2, 2 }, angle);
 
 		SDL_RenderPresent(renderer);
 	}
