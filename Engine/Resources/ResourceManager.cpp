@@ -1,16 +1,30 @@
 #include "pch.h"
 #include "ResourceManager.h"
 
-bool nc::ResourceManager::Startup()
+namespace nc
 {
-    return true;
-}
-
-void nc::ResourceManager::Shutdown()
-{
-    for (auto resource : m_resources)
+    bool ResourceManager::Startup()
     {
-        resource.second->Destroy();
-        delete resource.second;
+        return true;
+    }
+
+    void ResourceManager::Shutdown()
+    {
+        RemoveAll();
+    }
+
+    void ResourceManager::Update()
+    {
+    }
+
+    void ResourceManager::RemoveAll()
+    {
+        for (auto resource : m_resources)
+        {
+            resource.second->Destroy();
+            delete resource.second;
+        }
+
+        m_resources.clear();
     }
 }

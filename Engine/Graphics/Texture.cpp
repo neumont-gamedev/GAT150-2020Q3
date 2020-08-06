@@ -1,11 +1,12 @@
 #include "pch.h"
 #include "Texture.h"
+#include "Renderer.h"
 
 namespace nc
 {
-	bool Texture::Create(const std::string& name, SDL_Renderer* renderer)
+	bool Texture::Create(const std::string& name, void* renderer)
 	{
-		m_renderer = renderer;
+		m_renderer = static_cast<Renderer*>(renderer)->m_renderer;
 
 		SDL_Surface* surface = IMG_Load(name.c_str());
 		if (surface == nullptr)
@@ -25,7 +26,7 @@ namespace nc
 
 	void Texture::Destroy()
 	{
-		//delete m_texture;
+		SDL_DestroyTexture(m_texture);
 	}
 
 	void Texture::Draw(const Vector2& position, const Vector2& scale, float angle)
