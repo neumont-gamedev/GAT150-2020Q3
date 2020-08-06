@@ -1,16 +1,41 @@
 #include "pch.h"
 #include "ResourceManager.h"
 
-bool nc::ResourceManager::Startup()
+namespace nc
 {
-    return true;
-}
-
-void nc::ResourceManager::Shutdown()
-{
-    for (auto resource : m_resources)
+    bool ResourceManager::Startup()
     {
-        resource.second->Destroy();
-        delete resource.second;
+        return true;
+    }
+
+    void ResourceManager::Shutdown()
+    {
+        RemoveAll();
+    }
+
+    void ResourceManager::Update()
+    {
+        //
+    }
+
+    void ResourceManager::Remove(const std::string& name)
+    {
+        auto iter = m_resources.find(name);
+        if (iter != m_resources.end())
+        {
+            iter->second->Destroy();
+            delete iter->second;
+
+            m_resources.erase(iter);
+        }
+    }
+
+    void ResourceManager::RemoveAll()
+    {
+        for (auto resource : m_resources)
+        {
+            resource.second->Destroy();
+            delete resource.second;
+        }
     }
 }

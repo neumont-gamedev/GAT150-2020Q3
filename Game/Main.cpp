@@ -1,45 +1,21 @@
 #include "pch.h"
 #include "Graphics/Texture.h"
+#include "Graphics/Renderer.h"
+#include "Resources/ResourceManager.h"
+
+nc::Renderer renderer;
+nc::ResourceManager resourceManager;
 
 int main(int, char**)
 {
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) 
-	{
-		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
-		return 1;
-	}
+	resourceManager.Startup();
+	renderer.Startup();
 
-	IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
-
-	SDL_Window* window = SDL_CreateWindow("GAT150", 100, 100, 800, 600, SDL_WINDOW_SHOWN);
-	if (window == nullptr) 
-	{
-		std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
-		SDL_Quit();
-		return 1;
-	}
-
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-	if (renderer == nullptr)
-	{
-		std::cout << "Error: " << SDL_GetError() << std::endl;
-		SDL_Quit();
-		return 1;
-	}
-
-	// create textures
-	int width = 128;
-	int height = 128;
-
-	SDL_Texture* texture1 = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STATIC, width, height);
-
-	Uint32* pixels = new Uint32[width * height];
-	memset(pixels, 128, width * height * sizeof(Uint32));
-	SDL_UpdateTexture(texture1, NULL, pixels, width * sizeof(Uint32));
+	renderer.Create("GAT150", 800, 600);
 
 	// texture
-	nc::Texture texture;
-	texture.Create("sf2.png", renderer);
+	nc::Texture* texture1 = resourceManager.Get<nc::Texture>("sf2.png", &renderer);
+	nc::Texture* texture2 = resourceManager.Get<nc::Texture>("sf2.png", &renderer);
 	float angle{ 0 };
 
 	SDL_Event event;
@@ -54,34 +30,19 @@ int main(int, char**)
 			break;
 		}
 
-		SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-		SDL_RenderClear(renderer);
+		renderer.BeginFrame();
 
 		// draw
-		for (size_t i = 0; i < width * height; i++)
-		{
-			Uint8 c = rand() % 256;
-			pixels[i] = (c << 24 | c << 16 | c << 8);
-		}
+		angle = angle + 1.0f;
+		texture1->Draw({ 500, 100 }, { 3.0f, 3.0f }, angle);
+		texture2->Draw({ 300, 200 }, { 2.0f, 2.0f }, angle + 90);
 
-		// pixel memory = (8/8/8/8), (8/8/8/8)
-		// pixel memory = (c/c/c/0), (c/c/c/0)
-
-		SDL_UpdateTexture(texture1, NULL, pixels, width * sizeof(Uint32));
-		SDL_Rect rect;
-		rect.x = 200;
-		rect.y = 200;
-		rect.w = width;
-		rect.h = height;
-		SDL_RenderCopy(renderer, texture1, NULL, &rect);
-
-		angle = angle + 0.5f;
-		texture.Draw({ 500, 100 }, { 3.0f, 3.0f }, angle);
-
-		SDL_RenderPresent(renderer);
+		renderer.EndFrame();
 	}
 
-	IMG_Quit();
+	renderer.Shutdown();
+	resourceManager.Shutdown();
+
 	SDL_Quit();
 
 	return 0;
