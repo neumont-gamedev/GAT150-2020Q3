@@ -171,6 +171,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Timer.h" />
     <ClInclude Include="Core\System.h" />
     <ClInclude Include="Core\Timer.h" />
     <ClInclude Include="framework.h" />
