@@ -173,7 +173,6 @@
   <ItemGroup>
     <ClInclude Include="Core\Timer.h" />
     <ClInclude Include="Core\System.h" />
-    <ClInclude Include="Core\Timer.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Graphics\Texture.h" />
