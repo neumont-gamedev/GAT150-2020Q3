@@ -3,22 +3,28 @@
 #include "Graphics/Renderer.h"
 #include "Resources/ResourceManager.h"
 #include "Input/InputSystem.h"
-
+#include "Core/Timer.h"
 
 nc::ResourceManager resourceManager;
 nc::Renderer renderer;
 nc::InputSystem inputSystem;
+nc::FrameTimer timer;
 
 int main(int, char**)
 {
+	//nc::Timer timer;
+	//// profile
+	//for (size_t i = 0; i < 1000; i++) { std::sqrt(rand() % 100); }
+	//std::cout << timer.ElapsedSeconds() << std::endl;
+
 	renderer.Startup();
 	renderer.Create("GAT150", 800, 600);
 	resourceManager.Startup();
 	inputSystem.Startup();
 
 	// texture
-	nc::Texture* texture1 = resourceManager.Get<nc::Texture>("sf2.bmp", &renderer);
-	nc::Texture* texture2 = resourceManager.Get<nc::Texture>("sf2.bmp", &renderer);
+	nc::Texture* car = resourceManager.Get<nc::Texture>("cars.png", &renderer);
+	nc::Texture* background = resourceManager.Get<nc::Texture>("background.png", &renderer);
 
 	nc::Vector2 position{ 400, 300 };
 	float angle{ 0 };
@@ -36,23 +42,29 @@ int main(int, char**)
 		}
 
 		// update
+		timer.Tick();
 		inputSystem.Update();
+
+		if (inputSystem.GetButtonState(SDL_SCANCODE_ESCAPE) == nc::InputSystem::eButtonState::PRESSED)
+		{
+			quit = true;
+		}
 
 		if (inputSystem.GetButtonState(SDL_SCANCODE_LEFT) == nc::InputSystem::eButtonState::HELD)
 		{
-			position.x = position.x - 1.0f;
+			position.x = position.x - 200.0f * timer.DeltaTime();
 		}
 		if (inputSystem.GetButtonState(SDL_SCANCODE_RIGHT) == nc::InputSystem::eButtonState::HELD)
 		{
-			position.x = position.x + 1.0f;
+			position.x = position.x + 200.0f * timer.DeltaTime();
 		}
 
 		// draw
 		renderer.BeginFrame();
 		
-		angle = angle + 0.5f;
-		texture1->Draw({ 500, 100 }, { 3.0f, 3.0f }, angle);
-		texture2->Draw(position, { 3.0f, 3.0f }, angle + 90);
+		angle = angle + 180 * timer.DeltaTime();
+		background->Draw({ 0, 0 }, { 1.0f, 1.0f }, 0);
+		car->Draw({ 0, 16, 64, 144 }, position, { 1.0f, 1.0f }, 0);
 
 		renderer.EndFrame();
 	}
