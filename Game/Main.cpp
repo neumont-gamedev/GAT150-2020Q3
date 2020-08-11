@@ -1,24 +1,33 @@
+#include "pch.h"
 #include "Graphics/Texture.h"
 #include "Graphics/Renderer.h"
 #include "Resources/ResourceManager.h"
 #include "Input/InputSystem.h"
-#include <SDL.h>
-#include <iostream>
+#include "Core/Timer.h"
 
 nc::Renderer renderer;
 nc::ResourceManager resourceManager;
 nc::InputSystem inputSystem;
+nc::FrameTimer timer;
 
 int main(int, char**)
 {
+	//nc::Timer timer;
+	//for (size_t i = 0; i < 1000; i++) { std::sqrt(rand() % 100); }
+	//
+	//std::cout << timer.ElapsedTicks() << std::endl;
+	//std::cout << timer.ElapsedSeconds() << std::endl;
+	// 0 <-> 1.0 (0 <-> 10000000000)
+
+
 	renderer.Startup();
 	resourceManager.Startup();
 	inputSystem.Startup();
 
 	renderer.Create("GAT150", 800, 600);
 
-	nc::Texture* texture1 = resourceManager.Get<nc::Texture>("sf2.bmp", &renderer);
-	nc::Texture* texture2 = resourceManager.Get<nc::Texture>("sf2.bmp", &renderer);
+	nc::Texture* background = resourceManager.Get<nc::Texture>("background.bmp", &renderer);
+	nc::Texture* car = resourceManager.Get<nc::Texture>("cars.bmp", &renderer);
 
 	float angle{ 0 };
 	nc::Vector2 position{ 400, 300 };
@@ -35,23 +44,28 @@ int main(int, char**)
 			break;
 		}
 
+		// update
+		timer.Tick();
 		resourceManager.Update();
 		inputSystem.Update();
 
-		if (inputSystem.GetButtonState(SDL_SCANCODE_LEFT) == nc::InputSystem::eButtonState::HELD)
+		quit = (inputSystem.GetButtonState(SDL_SCANCODE_ESCAPE) == nc::InputSystem::eButtonState::PRESSED);
+
+		if (inputSystem.GetButtonState(SDL_SCANCODE_A) == nc::InputSystem::eButtonState::HELD)
 		{
-			position.x = position.x - 1.0f;
+			position.x = position.x - 200.0f * timer.DeltaTime();
 		}
-		if (inputSystem.GetButtonState(SDL_SCANCODE_RIGHT) == nc::InputSystem::eButtonState::HELD)
+		if (inputSystem.GetButtonState(SDL_SCANCODE_D) == nc::InputSystem::eButtonState::HELD)
 		{
-			position.x = position.x + 1.0f;
+			position.x = position.x + 200.0f * timer.DeltaTime();
 		}
 
+		// draw
 		renderer.BeginFrame();
 
-		angle = angle + 1;
-		texture1->Draw(position, { 1, 1 }, angle);
-		texture2->Draw({ 200, 400 }, { 2, 2 }, angle + 90);
+		angle = angle + 90 * timer.DeltaTime();
+		background->Draw({ 0, 0 });
+		car->Draw({ 0, 16, 64, 144 }, position);
 
 		renderer.EndFrame();
 	}
