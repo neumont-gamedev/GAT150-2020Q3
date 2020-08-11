@@ -4,6 +4,7 @@
 #include "Resources/ResourceManager.h"
 #include "Input/InputSystem.h"
 #include "Core/Timer.h"
+#include "Math/Math.h"
 
 nc::ResourceManager resourceManager;
 nc::Renderer renderer;
@@ -27,6 +28,7 @@ int main(int, char**)
 	nc::Texture* background = resourceManager.Get<nc::Texture>("background.png", &renderer);
 
 	nc::Vector2 position{ 400, 300 };
+	nc::Vector2 velocity;
 	float angle{ 0 };
 
 	SDL_Event event;
@@ -50,21 +52,35 @@ int main(int, char**)
 			quit = true;
 		}
 
-		if (inputSystem.GetButtonState(SDL_SCANCODE_LEFT) == nc::InputSystem::eButtonState::HELD)
+		// player controller
+		if (inputSystem.GetButtonState(SDL_SCANCODE_A) == nc::InputSystem::eButtonState::HELD)
 		{
-			position.x = position.x - 200.0f * timer.DeltaTime();
+			angle = angle - 180.0f * timer.DeltaTime();
 		}
-		if (inputSystem.GetButtonState(SDL_SCANCODE_RIGHT) == nc::InputSystem::eButtonState::HELD)
+		if (inputSystem.GetButtonState(SDL_SCANCODE_D) == nc::InputSystem::eButtonState::HELD)
 		{
-			position.x = position.x + 200.0f * timer.DeltaTime();
+			angle = angle + 180.0f * timer.DeltaTime();
 		}
+		
+		nc::Vector2 force{ 0, 0 };
+		if (inputSystem.GetButtonState(SDL_SCANCODE_W) == nc::InputSystem::eButtonState::HELD)
+		{
+			force = nc::Vector2::forward * 1000.0f;
+		}
+		force = nc::Vector2::Rotate(force, nc::DegreesToRadians(angle));
+
+		// physics
+		velocity = velocity + force * timer.DeltaTime();
+		velocity = velocity * 0.95f;
+		position = position + velocity * timer.DeltaTime();
 
 		// draw
 		renderer.BeginFrame();
-		
-		angle = angle + 180 * timer.DeltaTime();
+				
 		background->Draw({ 0, 0 }, { 1.0f, 1.0f }, 0);
-		car->Draw({ 0, 16, 64, 144 }, position, { 1.0f, 1.0f }, 0);
+
+		// render sprite
+		car->Draw({ 128, 120, 48, 98 }, position, { 1.0f, 1.0f }, angle);
 
 		renderer.EndFrame();
 	}
