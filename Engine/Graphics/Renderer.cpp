@@ -11,6 +11,8 @@ namespace nc
 			return false;
 		}
 
+		IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
+
 		return true;
 	}
 

@@ -8,5 +8,4 @@ namespace nc
 	public:
 		virtual void Draw() = 0;
 	};
-
 }

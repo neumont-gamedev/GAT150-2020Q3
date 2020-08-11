@@ -3,6 +3,8 @@
 
 namespace nc
 {
+	class GameObject;
+
 	class Component : public Object
 	{
 	public:
@@ -11,6 +13,6 @@ namespace nc
 		friend class GameObject;
 
 	protected:
-		class GameObject* m_owner{ nullptr };
+		GameObject* m_owner{ nullptr };
 	};
 }

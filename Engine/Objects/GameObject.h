@@ -9,33 +9,34 @@ namespace nc
 	class GameObject : public Object
 	{
 	public:
-		bool Create(const std::string& name = "", void* data = nullptr) override;
-		void Destroy() override;
+		virtual void Create(void* data = nullptr) override;
+		virtual void Destroy() override;
 
 		void Update();
 		void Draw();
 
-		void AddComponent(Component* component);
-		void RemoveComponent(Component* component);
-		void RemoveAllComponents();
-
-		template <typename T>
+		template<typename T>
 		T* GetComponent()
 		{
-			T* result = nullptr;
-			for (Component* component : m_components)
+			T* result{ nullptr };
+
+			for (auto component : m_components)
 			{
 				result = dynamic_cast<T*>(component);
-				if (result != nullptr) break;
+				if (result) break;
 			}
 
 			return result;
 		}
 
-		Transform& GetTransform() { return m_transform; }
+		void AddComponent(Component* component);
+		void RemoveComponent(Component* component);
+		void RemoveAllComponents();
+
+	public:
+		Transform m_transform;
 
 	protected:
-		Transform m_transform;
 		std::vector<Component*> m_components;
 	};
 }

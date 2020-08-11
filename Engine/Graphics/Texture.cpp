@@ -8,7 +8,7 @@ namespace nc
     {
         m_renderer = static_cast<Renderer*>(renderer)->m_renderer;
 
-        SDL_Surface* surface = SDL_LoadBMP(name.c_str());
+        SDL_Surface* surface = IMG_Load(name.c_str());
         if (surface == nullptr)
         {
             std::cout << "Error: " << SDL_GetError() << std::endl;

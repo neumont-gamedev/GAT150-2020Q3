@@ -24,11 +24,11 @@
     <Filter Include="Input">
       <UniqueIdentifier>{52114e2d-7cd1-4942-9acf-cebdfb5ae8b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components">
-      <UniqueIdentifier>{532dfb0f-e2d5-4190-aa90-73df05b769cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Objects">
-      <UniqueIdentifier>{7e6ac260-0f77-4740-a928-4508db5288cc}</UniqueIdentifier>
+      <UniqueIdentifier>{e8a4a546-7658-4242-b199-97f3491df019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{5c7ad4b5-06a6-4cb9-8290-4d780b56026a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -80,19 +80,19 @@
     <ClInclude Include="Core\Timer.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Objects\GameObject.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
     <ClInclude Include="Objects\Object.h">
       <Filter>Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Components\RenderComponent.h">
+    <ClInclude Include="Objects\GameObject.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Component.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Components\PhysicsComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Component.h">
+    <ClInclude Include="Components\RenderComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
