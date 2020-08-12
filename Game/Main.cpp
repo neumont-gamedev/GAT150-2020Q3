@@ -1,26 +1,37 @@
 #include "pch.h"
+#include "Engine.h"
 #include "Graphics/Texture.h"
-#include "Graphics/Renderer.h"
-#include "Resources/ResourceManager.h"
-#include "Input/InputSystem.h"
-#include "Core/Timer.h"
-#include "Math/Math.h"
+#include "Objects/GameObject.h"
+#include "Components/PhysicsComponent.h"
+#include "Components/SpriteComponent.h"
+#include "Components/PlayerController.h"
+#include "Core/Json.h"
 
-nc::Renderer renderer;
-nc::ResourceManager resourceManager;
-nc::InputSystem inputSystem;
-nc::FrameTimer timer;
+nc::Engine engine;
 
 int main(int, char**)
 {
-	renderer.Startup();
-	resourceManager.Startup();
-	inputSystem.Startup();
+	engine.Startup();
 
-	renderer.Create("GAT150", 800, 600);
+	nc::GameObject player;
+	player.Create(&engine);
+	player.m_transform.position = { 400, 300 };
+	
+	nc::Component* component;
+	component = new nc::PhysicsComponent;
+	player.AddComponent(component);
+	component->Create();
+	
+	component = new nc::SpriteComponent;
+	player.AddComponent(component);
+	component->Create();
 
-	nc::Texture* background = resourceManager.Get<nc::Texture>("background.png", &renderer);
-	nc::Texture* car = resourceManager.Get<nc::Texture>("cars.png", &renderer);
+	component = new nc::PlayerController;
+	player.AddComponent(component);
+	component->Create();
+
+	nc::Texture* background = engine.GetSystem<nc::ResourceManager>()->Get<nc::Texture>("background.png", engine.GetSystem<nc::Renderer>());
+	nc::Texture* car = engine.GetSystem<nc::ResourceManager>()->Get<nc::Texture>("cars.png", engine.GetSystem<nc::Renderer>());
 
 	float angle{ 0 };
 	nc::Vector2 position{ 400, 300 };
@@ -39,49 +50,62 @@ int main(int, char**)
 		}
 
 		// update
-		timer.Tick();
-		resourceManager.Update();
-		inputSystem.Update();
+		engine.Update();
 
-		quit = (inputSystem.GetButtonState(SDL_SCANCODE_ESCAPE) == nc::InputSystem::eButtonState::PRESSED);
+		quit = (engine.GetSystem<nc::InputSystem>()->GetButtonState(SDL_SCANCODE_ESCAPE) == nc::InputSystem::eButtonState::PRESSED);
 
-		// player controller
-		if (inputSystem.GetButtonState(SDL_SCANCODE_A) == nc::InputSystem::eButtonState::HELD)
-		{
-			angle = angle - 200.0f * timer.DeltaTime();
-		}
-		if (inputSystem.GetButtonState(SDL_SCANCODE_D) == nc::InputSystem::eButtonState::HELD)
-		{
-			angle = angle + 200.0f * timer.DeltaTime();
-		}
+		player.Update();
 
-		nc::Vector2 force{ 0, 0 };
-		if (inputSystem.GetButtonState(SDL_SCANCODE_W) == nc::InputSystem::eButtonState::HELD)
-		{
-			force = nc::Vector2::forward * 1000.0f;
-		}
-		force = nc::Vector2::Rotate(force, nc::DegreesToRadians(angle));
 
-		// physics
-		velocity = velocity + force * timer.DeltaTime();
-		velocity = velocity * 0.94f;
-		position = position + velocity * timer.DeltaTime();
+
 
 		// draw
-		renderer.BeginFrame();
+		engine.GetSystem<nc::Renderer>()->BeginFrame();
 
 		background->Draw({ 0, 0 });
 
 		// player sprite draw
-		car->Draw({ 64, 110, 60, 112 }, position, { 1, 1 }, angle);
+		//car->Draw({ 64, 110, 60, 112 }, position, { 1, 1 }, angle);
+		player.Draw();
 
-		renderer.EndFrame();
+		engine.GetSystem<nc::Renderer>()->EndFrame();
 	}
 
-	inputSystem.Shutdown();
-	resourceManager.Shutdown();
-	renderer.Shutdown();
-	SDL_Quit();
+	engine.Shutdown();
+
+	
 
 	return 0;
 }
+
+
+//rapidjson::Document document;
+//nc::json::Load("json.txt", document);
+//
+//std::string str;
+//nc::json::Get(document, "string", str);
+//std::cout << str << std::endl;
+//
+//bool b;
+//nc::json::Get(document, "bool", b);
+//std::cout << b << std::endl;
+//
+//int i1;
+//nc::json::Get(document, "integer1", i1);
+//std::cout << i1 << std::endl;
+//
+//int i2;
+//nc::json::Get(document, "integer2", i2);
+//std::cout << i2 << std::endl;
+//
+//float f;
+//nc::json::Get(document, "float", f);
+//std::cout << f << std::endl;
+//
+//nc::Vector2 v2;
+//nc::json::Get(document, "vector2", v2);
+//std::cout << v2 << std::endl;
+//
+//nc::Color color;
+//nc::json::Get(document, "color", color);
+//std::cout << color << std::endl;

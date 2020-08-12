@@ -1,5 +1,6 @@
 #pragma once
 
+#include <SDL.h>
 #include <windows.h>
 #include <iostream>
 
@@ -28,6 +29,7 @@ namespace nc
 		Color operator / (float s) const { return { r / s, g / s, b / s }; }
 
 		friend std::istream& operator >> (std::istream& stream, Color& c);
+		friend std::ostream& operator << (std::ostream& stream, Color& c);
 
 		SDL_Color Pack8888() const;
 		operator SDL_Color() const { return Pack8888(); }

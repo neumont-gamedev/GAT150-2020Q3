@@ -1,10 +1,12 @@
 #pragma once
 #include "Object.h"
 #include "Math/Transform.h"
+#include "Engine.h"
 
 namespace nc
 {
 	class Component;
+	class Engine;
 
 	class GameObject : public Object
 	{
@@ -35,6 +37,7 @@ namespace nc
 
 	public:
 		Transform m_transform;
+		Engine* m_engine;
 
 	protected:
 		std::vector<Component*> m_components;
