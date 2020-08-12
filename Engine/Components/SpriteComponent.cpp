@@ -12,7 +12,6 @@ namespace nc
 
 	void SpriteComponent::Destroy()
 	{
-		//
 	}
 
 	void SpriteComponent::Update()
