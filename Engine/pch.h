@@ -8,6 +8,12 @@
 #define PCH_H
 
 #include "framework.h"
+
+#include "Math/Math.h"
+#include "Math/Random.h"
+#include "Math/Transform.h"
+#include "Math/Color.h"
+
 #include <SDL.h>
 #include <SDL_image.h>
 
