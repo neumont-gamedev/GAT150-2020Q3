@@ -1,6 +1,8 @@
 #pragma once
 #include "RenderComponent.h"
 
+
+
 namespace nc
 {
 	class SpriteComponent : public RenderComponent
@@ -11,6 +13,8 @@ namespace nc
 
 		virtual void Update() override;
 		virtual void Draw() override;
+
+		//static 
 
 	protected:
 		class Texture* m_texture;

@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Engine.h"
+#include "Objects/ObjectFactory.h"
 
 namespace nc
 {
