@@ -1,18 +1,16 @@
 #include "pch.h"
 #include "SpriteComponent.h"
 #include "Graphics/Texture.h"
-#include "Engine.h"
 
 namespace nc
 {
 	void SpriteComponent::Create(void* data)
 	{
-		m_texture = m_owner->m_engine->GetSystem<ResourceManager>()->Get<nc::Texture>("cars.png", m_owner->m_engine->GetSystem<Renderer>());
+		m_texture = m_owner->m_engine->GetSystem<nc::ResourceManager>()->Get<nc::Texture>("cars.png", m_owner->m_engine->GetSystem<nc::Renderer>());
 	}
 
 	void SpriteComponent::Destroy()
 	{
-		//
 	}
 
 	void SpriteComponent::Update()

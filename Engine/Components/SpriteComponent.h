@@ -3,8 +3,6 @@
 
 namespace nc
 {
-	class Texture;
-
 	class SpriteComponent : public RenderComponent
 	{
 	public:
@@ -15,6 +13,6 @@ namespace nc
 		virtual void Draw() override;
 
 	protected:
-		Texture* m_texture;
+		class Texture* m_texture;
 	};
 }

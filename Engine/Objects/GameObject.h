@@ -6,7 +6,6 @@
 namespace nc
 {
 	class Component;
-	class Engine;
 
 	class GameObject : public Object
 	{
@@ -18,18 +17,7 @@ namespace nc
 		void Draw();
 
 		template<typename T>
-		T* GetComponent()
-		{
-			T* result{ nullptr };
-
-			for (auto component : m_components)
-			{
-				result = dynamic_cast<T*>(component);
-				if (result) break;
-			}
-
-			return result;
-		}
+		T* GetComponent();
 
 		void AddComponent(Component* component);
 		void RemoveComponent(Component* component);
@@ -42,4 +30,18 @@ namespace nc
 	protected:
 		std::vector<Component*> m_components;
 	};
+
+	template<typename T>
+	T* GameObject::GetComponent()
+	{
+		T* result{ nullptr };
+
+		for (auto component : m_components)
+		{
+			result = dynamic_cast<T*>(component);
+			if (result) break;
+		}
+
+		return result;
+	}
 }

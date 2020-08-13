@@ -3,6 +3,8 @@
 
 namespace nc
 {
+	class GameObject;
+
 	class Component : public Object
 	{
 	public:
