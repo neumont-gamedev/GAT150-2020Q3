@@ -3,6 +3,7 @@
 #include "Objects/GameObject.h"
 #include "Components/PhysicsComponent.h"
 #include "Components/SpriteComponent.h"
+#include "Core/Json.h"
 
 nc::Engine engine;
 nc::GameObject player;
@@ -73,7 +74,37 @@ int main(int, char**)
 	}
 
 	engine.Shutdown();
-	
 
 	return 0;
 }
+
+//rapidjson::Document document;
+//nc::json::Load("json.txt", document);
+//
+//std::string str;
+//nc::json::Get(document, "string", str);
+//std::cout << str << std::endl;
+//
+//bool b;
+//nc::json::Get(document, "bool", b);
+//std::cout << b << std::endl;
+//
+//int i1;
+//nc::json::Get(document, "integer1", i1);
+//std::cout << i1 << std::endl;
+//
+//int i2;
+//nc::json::Get(document, "integer2", i2);
+//std::cout << i2 << std::endl;
+//
+//float f;
+//nc::json::Get(document, "float", f);
+//std::cout << f << std::endl;
+//
+//nc::Vector2 v2;
+//nc::json::Get(document, "vector2", v2);
+//std::cout << v2 << std::endl;
+//
+//nc::Color color;
+//nc::json::Get(document, "color", color);
+//std::cout << color << std::endl;
