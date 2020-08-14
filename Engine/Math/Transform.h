@@ -1,5 +1,6 @@
 #pragma once
 #include "Matrix33.h"
+#include "Core/Json.h"
 
 namespace nc
 {
@@ -11,8 +12,10 @@ namespace nc
 
 		Matrix33 matrix;
 
-		Transform() : position{ 0, 0 }, scale{ 1 }, angle{ 0 } {}
+		Transform() : position{ 0, 0 }, scale{ 1 }, angle{ 0 }, matrix{} {}
 		Transform(const Vector2& position, float scale = 1, float angle = 0) : position{position}, scale{scale}, angle{angle} {}
+
+		void Read(const rapidjson::Value& value);
 
 		void Update();
 		void Update(const Matrix33& mx);

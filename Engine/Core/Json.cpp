@@ -11,8 +11,7 @@ namespace nc
 			bool success = false;
 
 			std::ifstream stream(filename);
-			ASSERT_MSG(stream.good(), "Error loading JSON file: " + filename);
-
+			ASSERT_MSG(stream.is_open(), "Error loading: " + filename);
 			if (stream.is_open())
 			{
 				rapidjson::IStreamWrapper istream(stream);
@@ -185,7 +184,7 @@ namespace nc
 
 			for (rapidjson::SizeType i = 0; i < 4; i++)
 			{
-				if (property[i].IsInt() == false)
+				if (property[i].IsNumber() == false)
 				{
 					return false;
 				}

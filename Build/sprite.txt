@@ -1,9 +1,4 @@
 {
-   "texture":"cars.png",
-   "rect":[
-      64,
-      110,
-      60,
-      112
-   ]
+	"name": "cars.png",
+	"rect": [64, 110, 60, 112]
 }

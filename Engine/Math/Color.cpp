@@ -32,9 +32,11 @@ namespace nc
 
 		return stream;
 	}
-	std::ostream& operator<<(std::ostream& stream, Color& c)
+
+	std::ostream& operator<<(std::ostream& stream, const Color& c)
 	{
 		stream << c.r << " " << c.g << " " << c.b << " " << c.a;
+
 		return stream;
 	}
 }
