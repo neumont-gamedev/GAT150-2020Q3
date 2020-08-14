@@ -10,11 +10,13 @@ nc::GameObject player;
 
 int main(int, char**)
 {
+	rapidjson::Document document;
+
 	engine.Startup();
 
 	player.Create(&engine);
-	player.m_transform.position = { 400, 300 };
-	player.m_transform.angle = 45;
+	nc::json::Load("players.txt", document);
+	player.Read(document);
 
 	nc::Component* component;
 	component = new nc::PhysicsComponent;
@@ -23,6 +25,8 @@ int main(int, char**)
 
 	component = new nc::SpriteComponent;
 	player.AddComponent(component);
+	nc::json::Load("sprite.txt", document);
+	component->Read(document);
 	component->Create();
 
 	nc::Texture* background = engine.GetSystem<nc::ResourceManager>()->Get<nc::Texture>("background.png", engine.GetSystem<nc::Renderer>());
