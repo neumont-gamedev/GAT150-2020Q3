@@ -11,10 +11,6 @@ nc::GameObject player;
 
 int main(int, char**)
 {
-	//nc::Timer timer;
-	//// profile
-	//for (size_t i = 0; i < 1000; i++) { std::sqrt(rand() % 100); }
-	//std::cout << timer.ElapsedSeconds() << std::endl;
 	engine.Startup();
 
 	player.Create(&engine);
