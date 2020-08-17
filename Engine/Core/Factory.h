@@ -1,71 +1,43 @@
 #pragma once
-#include "Singleton.h"
-#include <string>
 #include <map>
+#include <functional>
 
 namespace nc
 {
-	template<typename TBase>
-	class CreatorBase
+	template<typename TBase, typename TKey>
+	class Factory
 	{
 	public:
-		virtual TBase* Create() const = 0;
-	};
+		using function_t = std::function<TBase* ()>;
 
-	template<typename T, typename TBase>
-	class Creator : public CreatorBase<TBase>
-	{
 	public:
-		virtual TBase* Create() const override { return new T; }
-	};
-
-	template<typename TBase, typename TKey = std::string>
-	class Factory : public Singleton<Factory<TBase, TKey>>
-	{
-	public:
-		~Factory();
-
 		template<typename T = TBase>
 		T* Create(TKey key);
+		void Register(TKey key, function_t function);
 
-		void Register(TKey key, CreatorBase<TBase>* creator);
-
-	private:
-		std::map<TKey, CreatorBase<TBase>*> m_registry;
+	protected:
+		std::map<TKey, function_t> m_registry;
 	};
-
-	template<typename TBase, typename TKey>
-	inline Factory<TBase, TKey>::~Factory()
-	{
-		for (const auto& iter : m_registry)
-		{
-			delete iter.second;
-		}
-
-		m_registry.clear();
-	}
 
 	template<typename TBase, typename TKey>
 	template<typename T>
 	inline T* Factory<TBase, TKey>::Create(TKey key)
 	{
+		T* object{ nullptr };
+
 		auto iter = m_registry.find(key);
-		if (iter == m_registry.end())
+		if (iter != m_registry.end())
 		{
-			return nullptr;
+			object = dynamic_cast<T*>(iter->second());
 		}
 
-		CreatorBase<TBase>* creator = (*iter).second;
-
-		return dynamic_cast<T*>(creator->Create());
+		return object;
 	}
 
 	template<typename TBase, typename TKey>
-	inline void Factory<TBase, TKey>::Register(TKey key, CreatorBase<TBase>* creator)
+	inline void Factory<TBase, TKey>::Register(TKey key, function_t function)
 	{
-		if (m_registry.find(key) == m_registry.end())
-		{
-			m_registry[key] = creator;
-		}
+		m_registry[key] = function;
 	}
 }
+
