@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "Graphics/Texture.h"
-#include "Engine.h"
 #include "Objects/GameObject.h"
 #include "Components/PhysicsComponent.h"
 #include "Components/SpriteComponent.h"
 #include "Components/PlayerComponent.h"
+#include "Core/Json.h"
 
 nc::Engine engine;
 nc::GameObject player;
@@ -14,22 +14,26 @@ int main(int, char**)
 	engine.Startup();
 
 	player.Create(&engine);
-	player.m_transform.position = { 400, 300 };
-	player.m_transform.angle = 45;
 
-	nc::Component* component = new nc::PhysicsComponent;
+	rapidjson::Document document;
+	nc::json::Load("player.txt", document);
+	player.Read(document);
+
+	nc::Component* component;
+	component = new nc::PhysicsComponent;
 	player.AddComponent(component);
 	component->Create();
-	
+
 	component = new nc::SpriteComponent;
 	player.AddComponent(component);
+	nc::json::Load("sprite.txt", document);
+	component->Read(document);
 	component->Create();
 
 	component = new nc::PlayerComponent;
 	player.AddComponent(component);
 	component->Create();
 
-	// texture
 	nc::Texture* background = engine.GetSystem<nc::ResourceManager>()->Get<nc::Texture>("background.png", engine.GetSystem<nc::Renderer>());
 
 	SDL_Event event;
@@ -48,15 +52,13 @@ int main(int, char**)
 		engine.Update();
 		player.Update();
 
-		if (engine.GetSystem<nc::InputSystem>()->GetButtonState(SDL_SCANCODE_ESCAPE) == nc::InputSystem::eButtonState::PRESSED)
-		{
-			quit = true;
-		}
+		quit = (engine.GetSystem<nc::InputSystem>()->GetButtonState(SDL_SCANCODE_ESCAPE) == nc::InputSystem::eButtonState::PRESSED);
+
 
 		// draw
 		engine.GetSystem<nc::Renderer>()->BeginFrame();
-				
-		background->Draw({ 0, 0 }, { 1.0f, 1.0f }, 0);
+
+		background->Draw({ 0, 0 });
 		player.Draw();
 
 		engine.GetSystem<nc::Renderer>()->EndFrame();
@@ -66,3 +68,4 @@ int main(int, char**)
 
 	return 0;
 }
+
