@@ -16,6 +16,8 @@ int main(int, char**)
 
 	objectFactory.Register("GameObject", nc::Object::Instantiate<nc::GameObject>);
 	objectFactory.Register("PhysicsComponent", nc::Object::Instantiate<nc::PhysicsComponent>);
+	objectFactory.Register("SpriteComponent", nc::Object::Instantiate<nc::SpriteComponent>);
+	objectFactory.Register("PlayerComponent", nc::Object::Instantiate<nc::PlayerComponent>);
 
 	nc::GameObject* player = objectFactory.Create<nc::GameObject>("GameObject");
 
@@ -30,13 +32,13 @@ int main(int, char**)
 	player->AddComponent(component);
 	component->Create();
 
-	component = new nc::SpriteComponent;
+	component = objectFactory.Create<nc::Component>("SpriteComponent");
 	player->AddComponent(component);
 	nc::json::Load("sprite.txt", document);
 	component->Read(document);
 	component->Create();
 
-	component = new nc::PlayerComponent;
+	component = objectFactory.Create<nc::Component>("PlayerComponent");
 	player->AddComponent(component);
 	component->Create();
 
@@ -59,7 +61,6 @@ int main(int, char**)
 		player->Update();
 
 		quit = (engine.GetSystem<nc::InputSystem>()->GetButtonState(SDL_SCANCODE_ESCAPE) == nc::InputSystem::eButtonState::PRESSED);
-
 
 		// draw
 		engine.GetSystem<nc::Renderer>()->BeginFrame();
