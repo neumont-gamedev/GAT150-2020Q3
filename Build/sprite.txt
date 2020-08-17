@@ -1,5 +1,5 @@
 {
-   "texture":"carsa.png",
+   "texture":"cars.png",
    "rect":[
       64,
       110,
