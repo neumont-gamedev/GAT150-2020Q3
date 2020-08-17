@@ -24,5 +24,6 @@
 #include <list>
 #include <map>
 #include <chrono>
+#include <cassert>
 
 #endif //PCH_H
