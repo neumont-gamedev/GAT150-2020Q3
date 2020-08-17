@@ -20,6 +20,13 @@ namespace nc
         return stream;
     }
 
+    void Transform::Read(const rapidjson::Value& value)
+    {
+        nc::json::Get(value, "position", position);
+        nc::json::Get(value, "scale", scale);
+        nc::json::Get(value, "angle", angle);
+    }
+
     void Transform::Update()
     {
         Matrix33 mxs;

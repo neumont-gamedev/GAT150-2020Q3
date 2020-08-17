@@ -13,6 +13,8 @@
 #include "Math/Random.h"
 #include "Math/Transform.h"
 
+#include "Core/Assert.h"
+
 #include <SDL.h>
 #include <SDL_image.h>
 
