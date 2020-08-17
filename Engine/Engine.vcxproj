@@ -194,6 +194,7 @@
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Objects\GameObject.h" />
     <ClInclude Include="Objects\Object.h" />
+    <ClInclude Include="Objects\ObjectFactory.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resources\Resource.h" />
     <ClInclude Include="Resources\ResourceManager.h" />
