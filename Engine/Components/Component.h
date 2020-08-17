@@ -1,5 +1,6 @@
 #pragma once
 #include "Objects/GameObject.h"
+
 namespace nc
 {
 	class GameObject;
@@ -15,4 +16,3 @@ namespace nc
 		GameObject* m_owner{ nullptr };
 	};
 }
-

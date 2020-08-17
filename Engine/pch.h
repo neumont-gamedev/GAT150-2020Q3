@@ -9,6 +9,8 @@
 
 #include "framework.h"
 
+#include "Core/Assert.h"
+
 #include "Math/Math.h"
 #include "Math/Random.h"
 #include "Math/Transform.h"
