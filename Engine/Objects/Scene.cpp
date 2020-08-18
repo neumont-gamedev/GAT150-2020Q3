@@ -24,10 +24,13 @@ namespace nc
 			json::Get(objectValue, "type", typeName);
 			nc::GameObject* gameObject = ObjectFactory::Instance().Create<GameObject>(typeName);
 			
-			gameObject->Create(m_engine);
-			gameObject->Read(objectValue);
+			if (gameObject)
+			{
+				gameObject->Create(m_engine);
+				gameObject->Read(objectValue);
 
-			AddGameObject(gameObject);
+				AddGameObject(gameObject);
+			}
 		}
 	}
 
