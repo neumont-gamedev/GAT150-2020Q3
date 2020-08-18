@@ -41,7 +41,6 @@ namespace nc
 
 	void GameObject::AddComponent(Component* component)
 	{
-		component->m_owner = this;
 		m_components.push_back(component);
 	}
 

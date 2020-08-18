@@ -16,7 +16,6 @@ namespace nc
 
 	protected:
 		std::string m_textureName;
-		SDL_Rect m_rect;
-		class Texture* m_texture;
+		SDL_Rect m_rect{ 0, 0, 0, 0 };
 	};
 }
