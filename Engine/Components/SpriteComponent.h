@@ -1,5 +1,6 @@
 #pragma once
 #include "RenderComponent.h"
+#include "Objects/ObjectFactory.h"
 
 namespace nc
 {
@@ -14,9 +15,11 @@ namespace nc
 		virtual void Update() override;
 		virtual void Draw() override;
 
+		OBJECT_FACTORY_REGISTER_DECLARATION(SpriteComponent)
+
 	protected:
 		std::string m_textureName;
-		SDL_Rect m_rect;
-		class Texture* m_texture;
+		SDL_Rect m_rect{ 0, 0, 0, 0 };
+		class Texture* m_texture{ nullptr };
 	};
 }

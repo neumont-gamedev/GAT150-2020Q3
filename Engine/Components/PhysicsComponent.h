@@ -14,6 +14,8 @@ namespace nc
 
 		void SetForce(const Vector2& force) { m_force = force; }
 
+		OBJECT_FACTORY_REGISTER_DECLARATION(PhysicsComponent)
+
 	protected:
 		Vector2 m_velocity;
 		Vector2 m_force;

@@ -9,6 +9,8 @@ namespace nc
 		virtual void Create(void* data = nullptr) override;
 		virtual void Destroy() override;
 		virtual void Update() override;
+
+		OBJECT_FACTORY_REGISTER_DECLARATION(PlayerComponent)
 	};
 }
 
