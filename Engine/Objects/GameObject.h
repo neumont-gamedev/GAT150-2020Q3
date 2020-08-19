@@ -26,6 +26,7 @@ namespace nc
 		void RemoveAllComponents();
 
 	public:
+		std::string m_name;
 		Transform m_transform;
 		Engine* m_engine;
 

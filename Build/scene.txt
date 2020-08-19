@@ -1,0 +1,30 @@
+{
+	"GameObject":{
+		"type":"GameObject",
+		"name":"Player",
+		"position":[
+			300,
+			400
+		],
+		"scale":1,
+		"angle":45,
+		"Components":[
+			{
+				"type":"PhysicsComponent"
+			},
+			{
+				"type":"PlayerComponent"
+			},
+			{
+				"type":"SpriteComponent",
+				"texture":"cars.png",
+				"rect":[
+					64,
+					110,
+					60,
+					112
+				]
+			}
+		]
+	}
+}
