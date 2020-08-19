@@ -1,5 +1,5 @@
 #pragma once
-#include "Object.h"
+#include "ObjectFactory.h"
 #include "Math/Transform.h"
 #include "Engine.h"
 
@@ -14,6 +14,7 @@ namespace nc
 		virtual void Destroy() override;
 
 		void Read(const rapidjson::Value& value) override;
+		void ReadComponents(const rapidjson::Value& value);
 
 		void Update();
 		void Draw();
@@ -24,6 +25,8 @@ namespace nc
 		void AddComponent(Component* component);
 		void RemoveComponent(Component* component);
 		void RemoveAllComponents();
+
+		//OBJECT_FACTORY_REGISTER_DECLARATION(GameObject)
 
 	public:
 		std::string m_name;
