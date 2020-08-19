@@ -10,7 +10,7 @@ namespace nc
 		virtual void Destroy() override;
 		virtual void Update() override;
 
-		OBJECT_FACTORY_REGISTER_DECLARATION(PlayerComponent)
+		//OBJECT_FACTORY_REGISTER_DECLARATION(PlayerComponent)
 	};
 }
 

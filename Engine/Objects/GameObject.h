@@ -26,13 +26,12 @@ namespace nc
 		void RemoveComponent(Component* component);
 		void RemoveAllComponents();
 
-		OBJECT_FACTORY_REGISTER_DECLARATION(GameObject)
+		//OBJECT_FACTORY_REGISTER_DECLARATION(GameObject)
 
 	public:
 		std::string m_name;
 		Transform m_transform;
 		Engine* m_engine;
-		std::string m_name;
 
 	protected:
 		std::vector<Component*> m_components;

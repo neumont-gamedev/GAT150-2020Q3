@@ -4,8 +4,10 @@
 #include "Components/PlayerComponent.h"
 #include "Core/Json.h"
 #include "Objects/ObjectFactory.h"
+#include "Objects/Scene.h"
 
 nc::Engine engine;
+nc::Scene scene;
 
 int main(int, char**)
 {
@@ -14,28 +16,10 @@ int main(int, char**)
 	nc::ObjectFactory::Instance().Initialize();
 	nc::ObjectFactory::Instance().Register("PlayerComponent", nc::Object::Instantiate<nc::PlayerComponent>);
 
-	nc::GameObject* player = nc::ObjectFactory::Instance().Create<nc::GameObject>("GameObject");
-	
-	player->Create(&engine);
-
 	rapidjson::Document document;
-	nc::json::Load("player.txt", document);
-	player->Read(document);
-
-	nc::Component* component;
-	component = nc::ObjectFactory::Instance().Create<nc::Component>("PhysicsComponent");
-	component->Create(player);
-	player->AddComponent(component);
-
-	component = nc::ObjectFactory::Instance().Create<nc::Component>("SpriteComponent");
-	component->Create(player);
-	nc::json::Load("sprite.txt", document);
-	component->Read(document);
-	player->AddComponent(component);
-
-	component = nc::ObjectFactory::Instance().Create<nc::Component>("PlayerComponent");
-	component->Create(player);
-	player->AddComponent(component);
+	nc::json::Load("scene.txt", document);
+	scene.Create(&engine);
+	scene.Read(document);
 
 	nc::Texture* background = engine.GetSystem<nc::ResourceManager>()->Get<nc::Texture>("background.png", engine.GetSystem<nc::Renderer>());
 
@@ -53,16 +37,15 @@ int main(int, char**)
 
 		// update
 		engine.Update();
-		player->Update();
+		scene.Update();
 
 		quit = (engine.GetSystem<nc::InputSystem>()->GetButtonState(SDL_SCANCODE_ESCAPE) == nc::InputSystem::eButtonState::PRESSED);
-
 
 		// draw
 		engine.GetSystem<nc::Renderer>()->BeginFrame();
 
 		background->Draw({ 0, 0 });
-		player->Draw();
+		scene.Draw();
 
 		engine.GetSystem<nc::Renderer>()->EndFrame();
 	}
