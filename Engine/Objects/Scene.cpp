@@ -17,19 +17,31 @@ namespace nc
 
 	void Scene::Read(const rapidjson::Value& value)
 	{
-		const rapidjson::Value& objectValue = value["GameObject"];
-		if (objectValue.IsObject())
+		const rapidjson::Value& objectsValue = value["GameObjects"];
+		if (objectsValue.IsArray())
 		{
-			std::string typeName;
-			json::Get(objectValue, "type", typeName);
-			nc::GameObject* gameObject = ObjectFactory::Instance().Create<GameObject>(typeName);
-			
-			if (gameObject)
-			{
-				gameObject->Create(m_engine);
-				gameObject->Read(objectValue);
+			ReadGameObjects(objectsValue);
+		}
+	}
 
-				AddGameObject(gameObject);
+	void Scene::ReadGameObjects(const rapidjson::Value& value)
+	{
+		for (rapidjson::SizeType i = 0; i < value.Size(); i++)
+		{
+			const rapidjson::Value& objectValue = value[i];
+			if (objectValue.IsObject())
+			{
+				std::string typeName;
+				json::Get(objectValue, "type", typeName);
+				nc::GameObject* gameObject = ObjectFactory::Instance().Create<GameObject>(typeName);
+
+				if (gameObject)
+				{
+					gameObject->Create(m_engine);
+					gameObject->Read(objectValue);
+
+					AddGameObject(gameObject);
+				}
 			}
 		}
 	}
