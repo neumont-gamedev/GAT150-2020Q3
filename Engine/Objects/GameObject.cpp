@@ -22,6 +22,34 @@ namespace nc
 		json::Get(value, "position", m_transform.position);
 		json::Get(value, "scale", m_transform.scale);
 		json::Get(value, "angle", m_transform.angle);
+
+		const rapidjson::Value& componentsValue = value["Components"];
+		if (componentsValue.IsArray())
+		{
+			ReadComponents(componentsValue);
+		}
+	}
+
+	void GameObject::ReadComponents(const rapidjson::Value& value)
+	{
+		for (rapidjson::SizeType i = 0; i < value.Size(); i++)
+		{
+			const rapidjson::Value& componentValue = value[i];
+			if (componentValue.IsObject())
+			{
+				std::string typeName;
+				json::Get(componentValue, "type", typeName);
+
+				Component* component = nc::ObjectFactory::Instance().Create<nc::Component>(typeName);
+				if (component)
+				{
+					component->Create(this);
+					component->Read(componentValue);
+
+					AddComponent(component);
+				}
+			}
+		}
 	}
 
 	void GameObject::Update()
@@ -53,6 +81,7 @@ namespace nc
 		{
 			(*iter)->Destroy();
 			delete (*iter);
+			m_components.erase(iter);
 		}
 	}
 
@@ -63,5 +92,7 @@ namespace nc
 			component->Destroy();
 			delete component;
 		}
+
+		m_components.clear();
 	}
 }
