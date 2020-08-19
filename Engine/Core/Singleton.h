@@ -6,8 +6,8 @@ namespace nc
 	class Singleton
 	{
 	public:
-		Singleton(const Singleton&) = delete;
-		Singleton& operator = (const Singleton&) = delete;
+		Singleton(const Singleton&) = delete; // copy constructor
+		Singleton& operator = (const Singleton&) = delete; // assignment operator
 
 		static T& Instance()
 		{
