@@ -13,6 +13,7 @@ namespace nc
 		virtual void Destroy() override;
 
 		void Read(const rapidjson::Value& value) override;
+		void ReadGameObjects(const rapidjson::Value& value);
 
 		void Update();
 		void Draw();

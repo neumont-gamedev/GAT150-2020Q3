@@ -17,22 +17,50 @@ namespace nc
 
 	void Scene::Read(const rapidjson::Value& value)
 	{
-		const rapidjson::Value& objectValue = value["GameObject"];
-		if (objectValue.IsObject())
-		{
-			std::string typeName;
-			json::Get(objectValue, "type", typeName);
-			nc::GameObject* gameObject = ObjectFactory::Instance().Create<GameObject>(typeName);
-			
-			if (gameObject)
-			{
-				gameObject->Create(m_engine);
-				gameObject->Read(objectValue);
+		//const rapidjson::Value& objectValue = value["GameObject"];
+		//if (objectValue.IsObject())
+		//{
+		//	std::string typeName;
+		//	json::Get(objectValue, "type", typeName);
+		//	nc::GameObject* gameObject = ObjectFactory::Instance().Create<GameObject>(typeName);
+		//	
+		//	if (gameObject)
+		//	{
+		//		gameObject->Create(m_engine);
+		//		gameObject->Read(objectValue);
 
-				AddGameObject(gameObject);
+		//		AddGameObject(gameObject);
+		//	}
+		//}
+		const rapidjson::Value& objectsValue = value["GameObjects"];
+		if (objectsValue.IsArray())
+		{
+			ReadGameObjects(objectsValue);
+		}
+	}
+
+	void Scene::ReadGameObjects(const rapidjson::Value& value)
+	{
+		for (rapidjson::SizeType i = 0; i < value.Size(); i++)
+		{
+			const rapidjson::Value& objectValue = value[i];
+			if (objectValue.IsObject())
+			{
+				std::string typeName;
+				json::Get(objectValue, "type", typeName);
+				nc::GameObject* gameObject = ObjectFactory::Instance().Create<GameObject>(typeName);
+					
+				if (gameObject)
+				{
+					gameObject->Create(m_engine);
+					gameObject->Read(objectValue);
+
+					AddGameObject(gameObject);
+				}
 			}
 		}
 	}
+
 
 	void Scene::Update()
 	{
