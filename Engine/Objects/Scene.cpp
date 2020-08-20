@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "GameObject.h"
 #include "ObjectFactory.h"
+#include "Components/RenderComponent.h"
 
 namespace nc
 {
@@ -56,9 +57,24 @@ namespace nc
 
 	void Scene::Draw()
 	{
+		// collect render components from game objects
+		std::vector<RenderComponent*> components;
 		for (auto gameObject : m_gameObjects)
 		{
-			gameObject->Draw();
+			RenderComponent* component = gameObject->GetComponent<RenderComponent>();
+			if (component)
+			{
+				components.push_back(component);
+			}
+		}
+
+		// sort render components
+		std::sort(components.begin(), components.end(), RenderComponent::SortZ);
+
+		// draw render components
+		for (RenderComponent* component : components)
+		{
+			component->Draw();
 		}
 	}
 

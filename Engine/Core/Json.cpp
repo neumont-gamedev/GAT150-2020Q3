@@ -24,87 +24,55 @@ namespace nc
 
 		bool Get(const rapidjson::Value& value, const std::string& name, int& data)
 		{
-			// check if 'name' member exists
-			auto iter = value.FindMember(name.c_str());
-			if (iter == value.MemberEnd())
-			{
-				return false;
-			}
-
-			// check if type is desired type
-			auto& property = iter->value;
-			if (property.IsInt() == false)
+			// check if 'name' member exists and is of type
+			if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsInt() == false)
 			{
 				return false;
 			}
 
 			// set data
-			data = property.GetInt();
+			data = value[name.c_str()].GetInt();
 
 			return true;
 		}
 
 		bool Get(const rapidjson::Value& value, const std::string& name, float& data)
 		{
-			// check if 'name' member exists
-			auto iter = value.FindMember(name.c_str());
-			if (iter == value.MemberEnd())
+			// check if 'name' member exists and is of type
+			if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsNumber() == false)
 			{
 				return false;
 			}
 
-			// check if type is desired type
-			auto& property = iter->value;
-			if (property.IsNumber() == false)
-			{
-				return false;
-			}
-			
 			// set data
-			data = property.GetFloat();
+			data = value[name.c_str()].GetFloat();
 
 			return true;
 		}
 		bool Get(const rapidjson::Value& value, const std::string& name, bool& data)
 		{
-			// check if 'name' member exists
-			auto iter = value.FindMember(name.c_str());
-			if (iter == value.MemberEnd())
-			{
-				return false;
-			}
-
-			// check if type is desired type
-			auto& property = iter->value;
-			if (property.IsBool() == false)
+			// check if 'name' member exists and is of type
+			if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsBool() == false)
 			{
 				return false;
 			}
 
 			// set data
-			data = property.GetBool();
+			data = value[name.c_str()].GetBool();
 
 			return true;
 		}
 
 		bool Get(const rapidjson::Value& value, const std::string& name, std::string& data)
 		{
-			// check if 'name' member exists
-			auto iter = value.FindMember(name.c_str());
-			if (iter == value.MemberEnd())
-			{
-				return false;
-			}
-
-			// check if type is desired type
-			auto& property = iter->value;
-			if (property.IsString() == false)
+			// check if 'name' member exists and is of type
+			if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsString() == false)
 			{
 				return false;
 			}
 
 			// set data
-			data = property.GetString();
+			data = value[name.c_str()].GetString();
 
 			return true;
 		}
@@ -166,6 +134,7 @@ namespace nc
 
 			return true;
 		}
+
 		bool Get(const rapidjson::Value& value, const std::string& name, SDL_Rect& data)
 		{
 			auto iter = value.FindMember(name.c_str());
