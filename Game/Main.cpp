@@ -22,8 +22,6 @@ int main(int, char**)
 	scene.Create(&engine);
 	scene.Read(document);
 
-	nc::Texture* background = engine.GetSystem<nc::ResourceManager>()->Get<nc::Texture>("background.png", engine.GetSystem<nc::Renderer>());
-
 	SDL_Event event;
 	bool quit = false;
 	while (!quit)
@@ -45,7 +43,6 @@ int main(int, char**)
 		// draw
 		engine.GetSystem<nc::Renderer>()->BeginFrame();
 
-		background->Draw({ 0, 0 });
 		scene.Draw();
 
 		engine.GetSystem<nc::Renderer>()->EndFrame();
