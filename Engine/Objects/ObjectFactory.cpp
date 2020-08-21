@@ -8,9 +8,9 @@ namespace nc
 {
 	void ObjectFactoryImpl::Initialize()
 	{
-		nc::ObjectFactory::Instance().Register("GameObject", nc::Object::Instantiate<nc::GameObject>);
-		nc::ObjectFactory::Instance().Register("PhysicsComponent", nc::Object::Instantiate<nc::PhysicsComponent>);
-		nc::ObjectFactory::Instance().Register("SpriteComponent", nc::Object::Instantiate<nc::SpriteComponent>);
-		nc::ObjectFactory::Instance().Register("SpriteAnimationComponent", nc::Object::Instantiate<nc::SpriteAnimationComponent>);
+		nc::ObjectFactory::Instance().Register("GameObject", new nc::Creator<nc::GameObject, nc::Object>);
+		nc::ObjectFactory::Instance().Register("PhysicsComponent", new nc::Creator<nc::PhysicsComponent, nc::Object>);
+		nc::ObjectFactory::Instance().Register("SpriteComponent", new nc::Creator<nc::SpriteComponent, nc::Object>);
+		nc::ObjectFactory::Instance().Register("SpriteAnimationComponent", new nc::Creator<nc::SpriteAnimationComponent, nc::Object>);
 	}
 }

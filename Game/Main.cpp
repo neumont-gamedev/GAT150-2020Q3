@@ -14,13 +14,22 @@ int main(int, char**)
 	engine.Startup();
 
 	nc::ObjectFactory::Instance().Initialize();
-	nc::ObjectFactory::Instance().Register("PlayerComponent", nc::Object::Instantiate<nc::PlayerComponent>);
+	nc::ObjectFactory::Instance().Register("PlayerComponent", new nc::Creator<nc::PlayerComponent, nc::Object>);
 
 	rapidjson::Document document;
 	nc::json::Load("scene.txt", document);
 	scene.Create(&engine);
 	scene.Read(document);
 
+	for (size_t i = 0; i < 10; i++)
+	{
+		nc::GameObject* gameObject = nc::ObjectFactory::Instance().Create<nc::GameObject>("ExplosionX");
+		gameObject->m_transform.scale = 2;
+		gameObject->m_transform.angle = nc::random(0, 360);
+		gameObject->m_transform.position = nc::Vector2{ nc::random(0, 800), nc::random(0, 600) };
+		scene.AddGameObject(gameObject);
+	}
+	
 	SDL_Event event;
 	bool quit = false;
 	while (!quit)

@@ -5,6 +5,21 @@
 
 namespace nc
 {
+	GameObject::GameObject(const GameObject& other)
+	{
+		m_name = other.m_name;
+		m_transform = other.m_transform;
+		m_engine = other.m_engine;
+
+		// clone components
+		for (Component* component : other.m_components)
+		{
+			Component* clone = dynamic_cast<Component*>(component->Clone());
+			clone->m_owner = this;
+			AddComponent(clone);
+		}
+	}
+
 	void GameObject::Create(void* data)
 	{
 		m_engine = static_cast<Engine*>(data);
@@ -23,10 +38,13 @@ namespace nc
 		json::Get(value, "scale", m_transform.scale);
 		json::Get(value, "angle", m_transform.angle);
 
-		const rapidjson::Value& componentsValue = value["Components"];
-		if (componentsValue.IsArray())
+		if (value.HasMember("Components"))
 		{
-			ReadComponents(componentsValue);
+			const rapidjson::Value& componentsValue = value["Components"];
+			if (componentsValue.IsArray())
+			{
+				ReadComponents(componentsValue);
+			}
 		}
 	}
 
