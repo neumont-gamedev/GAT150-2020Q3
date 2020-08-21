@@ -1,4 +1,26 @@
 {
+	"Prototypes":[
+		{
+			"type":"GameObject",
+			"name":"ProtoExplosion",
+			"position":[
+				400,
+				200
+			],
+			"scale":1,
+			"angle":0,
+			"Components":[
+				{
+					"type":"SpriteAnimationComponent",
+					"texture":"sparkle.png",
+					"numX":8,
+					"numY":8,
+					"numFrames":64,
+					"fps":30
+				}
+			]
+		}
+	],
 	"GameObjects":[
 		{
 			"type":"GameObject",
@@ -40,9 +62,12 @@
 				},
 				{
 					"type":"SpriteComponent",
-					"z": 1,
+					"z":1,
 					"texture":"cars.png",
-					"origin": [0.5, 0.5],
+					"origin":[
+						0.5,
+						0.5
+					],
 					"rect":[
 						64,
 						110,
@@ -64,12 +89,12 @@
 			"Components":[
 				{
 					"type":"SpriteAnimationComponent",
-					"z": 3,
+					"z":3,
 					"texture":"sparkle.png",
 					"numX":8,
 					"numY":8,
-					"numFrames": 64,
-					"fps": 30
+					"numFrames":64,
+					"fps":30
 				}
 			]
 		}

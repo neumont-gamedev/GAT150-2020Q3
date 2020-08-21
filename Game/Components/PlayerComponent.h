@@ -8,9 +8,9 @@ namespace nc
 	public:
 		virtual void Create(void* data = nullptr) override;
 		virtual void Destroy() override;
-		virtual void Update() override;
+		virtual Object* Clone() const override { return new PlayerComponent{ *this }; }
 
-		//OBJECT_FACTORY_REGISTER_DECLARATION(PlayerComponent)
+		virtual void Update() override;
 	};
 }
 
