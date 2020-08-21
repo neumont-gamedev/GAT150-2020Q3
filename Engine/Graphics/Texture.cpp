@@ -35,6 +35,7 @@ namespace nc
     {
         Vector2 size = GetSize();
         size = size * scale;
+        Vector2 newPosition = position - (size * origin);
 
         Vector2 newPosition = position - (size * origin);
 
@@ -51,6 +52,7 @@ namespace nc
     {
         Vector2 size = { source.w, source.h };
         size = size * scale;
+        Vector2 newPosition = position - (size * origin);
 
         Vector2 newPosition = position - (size * origin);
 

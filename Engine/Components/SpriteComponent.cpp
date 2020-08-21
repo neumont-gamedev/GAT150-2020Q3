@@ -7,8 +7,6 @@ namespace nc
 	void SpriteComponent::Create(void* data)
 	{
 		m_owner = static_cast<GameObject*>(data);
-
-		//ASSERT_MSG((m_texture != nullptr), "Error texture " + m_textureName + " not loaded.");
 	}
 
 	void SpriteComponent::Destroy()
@@ -17,6 +15,8 @@ namespace nc
 
 	void SpriteComponent::Read(const rapidjson::Value& value)
 	{
+		RenderComponent::Read(value);
+
 		json::Get(value, "texture", m_textureName);
 		json::Get(value, "origin", m_origin);
 		json::Get(value, "rect", m_rect);
