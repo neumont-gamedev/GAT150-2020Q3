@@ -6,7 +6,7 @@ namespace nc
 	class RenderComponent : public Component
 	{
 	public:
-		void Read(const rapidjson::Value& value) override;
+		//void Read(const rapidjson::Value& value) override;
 
 		virtual void Draw() = 0;
 

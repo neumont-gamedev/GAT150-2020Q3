@@ -37,8 +37,6 @@ namespace nc
         size = size * scale;
         Vector2 newPosition = position - (size * origin);
 
-        Vector2 newPosition = position - (size * origin);
-
         SDL_Rect rect;
         rect.x = static_cast<int>(newPosition.x);
         rect.y = static_cast<int>(newPosition.y);
@@ -52,8 +50,6 @@ namespace nc
     {
         Vector2 size = { source.w, source.h };
         size = size * scale;
-        Vector2 newPosition = position - (size * origin);
-
         Vector2 newPosition = position - (size * origin);
 
         SDL_Rect rect;

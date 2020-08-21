@@ -8,7 +8,7 @@ namespace nc
 	class Component : public Object
 	{
 	public:
-		virtual void Create(void* data);
+		virtual void Create(void* data) = 0;
 		virtual void Update() = 0;
 
 		friend class GameObject;
