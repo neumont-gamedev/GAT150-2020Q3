@@ -215,9 +215,7 @@
     <ClInclude Include="Resources\ResourceManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="Components\PhysicsComponent.cpp" />
-    <ClCompile Include="Components\RenderComponent.cpp" />
     <ClCompile Include="Components\SpriteAnimationComponent.cpp" />
     <ClCompile Include="Components\SpriteComponent.cpp" />
     <ClCompile Include="Core\Assert.cpp" />

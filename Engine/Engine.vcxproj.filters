@@ -178,11 +178,5 @@
     <ClCompile Include="Components\SpriteAnimationComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Component.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\RenderComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
