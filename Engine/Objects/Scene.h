@@ -20,6 +20,7 @@ namespace nc
 		void Draw();
 
 		GameObject* Find(const std::string& name);
+		std::vector<GameObject*> FindGameObjectsWithTag(const std::string& name);
 
 		void AddGameObject(GameObject* gameObject);
 		void RemoveGameObject(GameObject* gameObject);

@@ -2,6 +2,7 @@
 #include "ObjectFactory.h"
 #include "Math/Transform.h"
 #include "Engine.h"
+#include <bitset>
 
 namespace nc
 {
@@ -9,6 +10,15 @@ namespace nc
 
 	class GameObject : public Object
 	{
+	public:
+		enum eState
+		{
+			ACTIVE,
+			VISIBLE,
+			DESTROY,
+			TRANSIENT
+		};
+
 	public:
 		GameObject() = default;
 		GameObject(const GameObject& other);
@@ -32,8 +42,15 @@ namespace nc
 
 	public:
 		std::string m_name;
+		std::string m_tag;
+		float m_lifetime;
+		
+		std::bitset<32> m_flags;
+
 		Transform m_transform;
 		Engine* m_engine{ nullptr };
+
+
 
 	protected:
 		std::vector<Component*> m_components;

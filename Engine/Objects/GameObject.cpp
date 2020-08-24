@@ -10,6 +10,8 @@ namespace nc
 		m_name = other.m_name;
 		m_transform = other.m_transform;
 		m_engine = other.m_engine;
+		m_lifetime = other.m_lifetime;
+		m_flags = other.m_flags;
 
 		for (auto component : other.m_components)
 		{
@@ -32,15 +34,24 @@ namespace nc
 	void GameObject::Read(const rapidjson::Value& value)
 	{
 		json::Get(value, "name", m_name);
+		json::Get(value, "tag", m_tag);
+		json::Get(value, "lifetime", m_lifetime);
 
 		json::Get(value, "position", m_transform.position);
 		json::Get(value, "scale", m_transform.scale);
 		json::Get(value, "angle", m_transform.angle);
 
-		const rapidjson::Value& componentsValue = value["Components"];
-		if (componentsValue.IsArray())
+		bool transient = m_flags[eState::TRANSIENT];
+		json::Get(value, "transient", transient);
+		m_flags[eState::TRANSIENT] = transient;
+
+		if (value.HasMember("Components"))
 		{
-			ReadComponents(componentsValue);
+			const rapidjson::Value& componentsValue = value["Components"];
+			if (componentsValue.IsArray())
+			{
+				ReadComponents(componentsValue);
+			}
 		}
 	}
 
@@ -71,6 +82,12 @@ namespace nc
 		for (auto component : m_components)
 		{
 			component->Update();
+		}
+
+		if (m_flags[eState::TRANSIENT])
+		{
+			m_lifetime = m_lifetime - m_engine->GetTimer().DeltaTime();
+			if (m_lifetime <= 0) m_flags[eState::DESTROY] = true;
 		}
 	}
 
