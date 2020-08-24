@@ -3,6 +3,8 @@
 		{
 			"type":"GameObject",
 			"name":"ProtoExplosion",
+			"transient": true,
+			"lifetime": 1.5,
 			"position":[
 				400,
 				200
@@ -78,25 +80,25 @@
 			]
 		},
 		{
-			"type":"GameObject",
+			"type":"ProtoExplosion",
 			"name":"Explosion",
+			"lifetime": 4.0,
 			"position":[
 				400,
-				200
+				400
 			],
 			"scale":1,
-			"angle":0,
-			"Components":[
-				{
-					"type":"SpriteAnimationComponent",
-					"z":3,
-					"texture":"sparkle.png",
-					"numX":8,
-					"numY":8,
-					"numFrames":64,
-					"fps":30
-				}
-			]
+			"angle":0
+		},
+		{
+			"type":"ProtoExplosion",
+			"name":"Explosion",
+			"position":[
+				100,
+				100
+			],
+			"scale":2,
+			"angle":0
 		}
 	]
 }
