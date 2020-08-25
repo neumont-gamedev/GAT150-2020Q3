@@ -11,7 +11,7 @@ namespace nc
 		float x, y;
 
 		Vector2() : x{ 0 }, y{ 0 } {}
-		Vector2(const b2Vec2& v) : x{v.x }, y{ v.y } {}
+		Vector2(const b2Vec2& v) : x{ v.x }, y{ v.y } {}
 		Vector2(float x, float y) : x{ x }, y{ y } {}
 		Vector2(int x, int y) : x{ static_cast<float>(x) }, y{ static_cast<float>(y) } {}
 
@@ -42,7 +42,7 @@ namespace nc
 
 		Vector2 operator - () { return Vector2{ -x, -y }; }
 
-		operator b2Vec2() const { return b2Vec2{ x, y }; }
+		operator b2Vec2 () const { return b2Vec2{ x, y }; }
 
 		friend std::istream& operator >> (std::istream& stream, Vector2& v);
 		friend std::ostream& operator << (std::ostream& stream, const Vector2& v);

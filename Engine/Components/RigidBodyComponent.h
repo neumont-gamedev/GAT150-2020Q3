@@ -1,6 +1,5 @@
 #pragma once
 #include "PhysicsComponent.h"
-#include "box2d/box2d.h"
 
 namespace nc
 {
@@ -15,12 +14,10 @@ namespace nc
 
 		virtual void Update() override;
 
-	protected:
-		bool m_isDynamic{ false };
-		Vector2 m_size;
-		float m_density{ 1 };
-		float m_friction{ 1 };
+		virtual void SetForce(const Vector2& force) override;
 
+	protected:
+		PhysicsSystem::RigidBodyData m_data;
 		b2Body* m_body{ nullptr };
 	};
 }
