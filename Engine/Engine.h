@@ -2,7 +2,6 @@
 #include "Graphics/Renderer.h"
 #include "Resources/ResourceManager.h"
 #include "Input/InputSystem.h"
-#include "Physics/PhysicsSystem.h"
 #include "Core/Timer.h"
 
 #include <vector>

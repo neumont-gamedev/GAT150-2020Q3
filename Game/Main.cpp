@@ -30,7 +30,6 @@ int main(int, char**)
 	//	scene.AddGameObject(gameObject);
 	//}
 
-
 	SDL_Event event;
 	bool quit = false;
 	while (!quit)

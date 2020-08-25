@@ -3,8 +3,8 @@
 		{
 			"type":"GameObject",
 			"name":"ProtoExplosion",
-			"lifetime": 1.0,
 			"transient": true,
+			"lifetime": 1.5,
 			"position":[
 				400,
 				200
@@ -14,38 +14,11 @@
 			"Components":[
 				{
 					"type":"SpriteAnimationComponent",
-					"texture":"explosion.png",
-					"numX":5,
-					"numY":5,
-					"numFrames":25,
+					"texture":"sparkle.png",
+					"numX":8,
+					"numY":8,
+					"numFrames":64,
 					"fps":30
-				}
-			]
-		},
-		{
-			"type":"GameObject",
-			"name":"EnemyProto",
-			"position":[
-				40,
-				30
-			],
-			"scale":1,
-			"angle":0,
-			"Components":[
-				{
-					"type":"SpriteComponent",
-					"z":1,
-					"texture":"cars.png",
-					"origin":[
-						0.5,
-						0.5
-					],
-					"rect":[
-						64,
-						110,
-						60,
-						112
-					]
 				}
 			]
 		}
@@ -109,23 +82,23 @@
 		{
 			"type":"ProtoExplosion",
 			"name":"Explosion",
-			"transient": true,
+			"lifetime": 4.0,
 			"position":[
 				400,
-				200
+				400
 			],
 			"scale":1,
 			"angle":0
 		},
 		{
-			"type":"EnemyProto",
-			"name":"Enemy",
+			"type":"ProtoExplosion",
+			"name":"Explosion",
 			"position":[
-				700,
-				400
+				100,
+				100
 			],
-			"scale":1,
-			"angle":180
+			"scale":2,
+			"angle":0
 		}
 	]
 }

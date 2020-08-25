@@ -89,11 +89,11 @@ namespace nc
 			gameObject->Update();
 		}
 
-		// remove destroyed game objects
+		// remove/destroy game objects
 		auto iter = m_gameObjects.begin();
 		while (iter != m_gameObjects.end())
 		{
-			if ((*iter)->m_flags[GameObject::eState::DESTROY])
+			if ((*iter)->m_flags[GameObject::eFlags::DESTROY])
 			{
 				(*iter)->Destroy();
 				delete (*iter);
@@ -145,6 +145,7 @@ namespace nc
 	std::vector<GameObject*> Scene::FindGameObjectsWithTag(const std::string& tag)
 	{
 		std::vector<GameObject*> gameObjects;
+
 		for (auto gameObject : m_gameObjects)
 		{
 			if (gameObject->m_tag == tag)

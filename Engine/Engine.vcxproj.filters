@@ -30,9 +30,6 @@
     <Filter Include="Components">
       <UniqueIdentifier>{5c7ad4b5-06a6-4cb9-8290-4d780b56026a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics">
-      <UniqueIdentifier>{ab165f93-b7b3-4b6d-bb3d-f3554dd69c0a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -125,12 +122,6 @@
     <ClInclude Include="Components\SpriteAnimationComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Physics\PhysicsSystem.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\RigidBodyComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -185,12 +176,6 @@
       <Filter>Objects</Filter>
     </ClCompile>
     <ClCompile Include="Components\SpriteAnimationComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Physics\PhysicsSystem.cpp">
-      <Filter>Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\RigidBodyComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>

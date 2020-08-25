@@ -11,7 +11,7 @@ namespace nc
 	class GameObject : public Object
 	{
 	public:
-		enum eState
+		enum eFlags
 		{
 			ACTIVE,
 			VISIBLE,
@@ -43,14 +43,12 @@ namespace nc
 	public:
 		std::string m_name;
 		std::string m_tag;
-		float m_lifetime;
-		
 		std::bitset<32> m_flags;
+
+		float m_lifetime{ 0 };
 
 		Transform m_transform;
 		Engine* m_engine{ nullptr };
-
-
 
 	protected:
 		std::vector<Component*> m_components;
