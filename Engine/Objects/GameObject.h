@@ -33,6 +33,9 @@ namespace nc
 		void Update() override;
 		void Draw();
 
+		void BeginContact(GameObject* other);
+		void EndContact(GameObject* other);
+
 		template<typename T>
 		T* GetComponent();
 

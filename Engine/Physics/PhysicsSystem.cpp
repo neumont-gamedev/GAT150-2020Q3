@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "PhysicsSystem.h"
+#include "ContactListener.h"
 
 namespace nc
 {
@@ -7,6 +8,9 @@ namespace nc
     {
         b2Vec2 gravity{ 0, 150 };
         m_world = new b2World{ gravity };
+
+        m_contactListener = new ContactListener;
+        m_world->SetContactListener(m_contactListener);
 
         return true;
     }
@@ -56,6 +60,7 @@ namespace nc
         fixtureDef.friction = data.friction;
         fixtureDef.restitution = data.restitution;
         fixtureDef.shape = &shape;
+        fixtureDef.userData = gameObject;
 
         body->CreateFixture(&fixtureDef);
 

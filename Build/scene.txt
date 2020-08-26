@@ -24,28 +24,33 @@
 		},
 		{
 			"type":"GameObject",
-			"name":"EnemyProto",
+			"name":"ProtoBox",
 			"position":[
-				40,
-				30
+				400,
+				500
 			],
 			"scale":1,
 			"angle":0,
 			"Components":[
 				{
 					"type":"SpriteComponent",
-					"z":1,
-					"texture":"cars.png",
-					"origin":[
-						0.5,
-						0.5
-					],
+					"texture":"box.png",
+					"origin": [0.5, 0.5],
 					"rect":[
-						64,
-						110,
-						60,
-						112
+						0,
+						0,
+						32,
+						32
 					]
+				},
+				{
+					"type":"RigidBodyComponent",
+					"isDynamic": true,
+					"lockAngle": false,
+					"size": [16, 16],
+					"density": 1,
+					"friction": 1,
+					"restitution": 0.0
 				}
 			]
 		}
@@ -118,12 +123,6 @@
 						32,
 						64
 					]
-				},
-				{
-					"type":"AudioComponent",
-					"sound":"jump.wav",
-					"playOnAwake": true,
-					"loop": false
 				}
 			]
 		},
@@ -137,16 +136,6 @@
 			],
 			"scale":1,
 			"angle":0
-		},
-		{
-			"type":"EnemyProto",
-			"name":"Enemy",
-			"position":[
-				700,
-				400
-			],
-			"scale":1,
-			"angle":180
 		}
 	]
 }

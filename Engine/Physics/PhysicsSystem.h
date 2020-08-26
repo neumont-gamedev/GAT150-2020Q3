@@ -27,5 +27,6 @@ namespace nc
 		b2Body* CreateBody(const Vector2& position, const RigidBodyData& data, class GameObject* gameObject = nullptr);
 	protected:
 		b2World* m_world{ nullptr };
+		class ContactListener* m_contactListener{ nullptr };
 	};
 }
