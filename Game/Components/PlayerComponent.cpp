@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "PlayerComponent.h"
 #include "Components/PhysicsComponent.h"
+#include "Components/AudioComponent.h"
 
 namespace nc
 {
@@ -29,6 +30,11 @@ namespace nc
 		if (m_owner->m_engine->GetSystem<nc::InputSystem>()->GetButtonState(SDL_SCANCODE_SPACE) == nc::InputSystem::eButtonState::PRESSED)
 		{
 			force.y = -400000;
+			AudioComponent* audioComponent = m_owner->GetComponent<AudioComponent>();
+			if (audioComponent)
+			{
+ 				audioComponent->Play();
+			}
 		}
 
 		PhysicsComponent* component = m_owner->GetComponent<PhysicsComponent>();
