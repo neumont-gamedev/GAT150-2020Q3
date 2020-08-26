@@ -8,10 +8,12 @@ namespace nc
 	GameObject::GameObject(const GameObject& other)
 	{
 		m_name = other.m_name;
+		m_tag = other.m_tag;
+		m_flags = other.m_flags;
+		m_lifetime = other.m_lifetime;
+
 		m_transform = other.m_transform;
 		m_engine = other.m_engine;
-		m_lifetime = other.m_lifetime;
-		m_flags = other.m_flags;
 
 		for (auto component : other.m_components)
 		{
@@ -35,15 +37,16 @@ namespace nc
 	{
 		json::Get(value, "name", m_name);
 		json::Get(value, "tag", m_tag);
+
+		bool transient = m_flags[eFlags::TRANSIENT];
+		json::Get(value, "transient", transient);
+		m_flags[eFlags::TRANSIENT] = transient;
+
 		json::Get(value, "lifetime", m_lifetime);
 
 		json::Get(value, "position", m_transform.position);
 		json::Get(value, "scale", m_transform.scale);
 		json::Get(value, "angle", m_transform.angle);
-
-		bool transient = m_flags[eState::TRANSIENT];
-		json::Get(value, "transient", transient);
-		m_flags[eState::TRANSIENT] = transient;
 
 		if (value.HasMember("Components"))
 		{
@@ -84,10 +87,10 @@ namespace nc
 			component->Update();
 		}
 
-		if (m_flags[eState::TRANSIENT])
+		if (m_flags[eFlags::TRANSIENT])
 		{
 			m_lifetime = m_lifetime - m_engine->GetTimer().DeltaTime();
-			if (m_lifetime <= 0) m_flags[eState::DESTROY] = true;
+			m_flags[eFlags::DESTROY] = (m_lifetime <= 0);
 		}
 	}
 
