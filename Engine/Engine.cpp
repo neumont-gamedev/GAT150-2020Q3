@@ -1,10 +1,13 @@
 #include "pch.h"
 #include "Engine.h"
 
+
 namespace nc
 {
 	bool Engine::Startup()
 	{
+		srand(static_cast<unsigned int>(time(nullptr)));
+
 		m_systems.push_back(new Renderer);
 		m_systems.push_back(new InputSystem);
 		m_systems.push_back(new ResourceManager);

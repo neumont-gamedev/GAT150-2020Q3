@@ -3,8 +3,8 @@
 		{
 			"type":"GameObject",
 			"name":"ProtoExplosion",
-			"lifetime": 3.0,
-			"transient": true,
+			"lifetime":3.0,
+			"transient":true,
 			"position":[
 				0,
 				0
@@ -48,6 +48,44 @@
 					]
 				}
 			]
+		},
+		{
+			"type":"GameObject",
+			"name":"ProtoBox",
+			"position":[
+				400,
+				500
+			],
+			"scale":1,
+			"angle":0,
+			"Components":[
+				{
+					"type":"SpriteComponent",
+					"texture":"box.png",
+					"origin":[
+						0.5,
+						0.5
+					],
+					"rect":[
+						0,
+						0,
+						32,
+						32
+					]
+				},
+				{
+					"type":"RigidBodyComponent",
+					"isDynamic":true,
+					"lockAngle":false,
+					"size":[
+						16,
+						16
+					],
+					"density":1,
+					"friction":1,
+					"restitution":0.0
+				}
+			]
 		}
 	],
 	"GameObjects":[
@@ -64,7 +102,10 @@
 				{
 					"type":"SpriteComponent",
 					"texture":"ground.png",
-					"origin": [0.5, 0.5],
+					"origin":[
+						0.5,
+						0.5
+					],
 					"rect":[
 						0,
 						0,
@@ -74,12 +115,15 @@
 				},
 				{
 					"type":"RigidBodyComponent",
-					"isDynamic": false,
-					"lockAngle": true,
-					"size": [400, 16],
-					"density": 1,
-					"friction": 1,
-					"restitution": 0.0
+					"isDynamic":false,
+					"lockAngle":true,
+					"size":[
+						400,
+						16
+					],
+					"density":1,
+					"friction":1,
+					"restitution":0.0
 				}
 			]
 		},
@@ -95,12 +139,15 @@
 			"Components":[
 				{
 					"type":"RigidBodyComponent",
-					"isDynamic": true,
-					"lockAngle": true,
-					"size": [16, 32],
-					"density": 1,
-					"friction": 1,
-					"restitution": 0.0
+					"isDynamic":true,
+					"lockAngle":true,
+					"size":[
+						16,
+						32
+					],
+					"density":1,
+					"friction":1,
+					"restitution":0.0
 				},
 				{
 					"type":"PlayerComponent"
@@ -118,35 +165,8 @@
 						32,
 						64
 					]
-				},
-				{
-					"type":"AudioComponent",
-					"sound":"jump.wav",
-					"playOnAwake": true,
-					"loop": false
 				}
 			]
-		},
-		{
-			"type":"ProtoExplosion",
-			"name":"Explosion",
-			"transient": true,
-			"position":[
-				400,
-				200
-			],
-			"scale":1,
-			"angle":0
-		},
-		{
-			"type":"EnemyProto",
-			"name":"Enemy",
-			"position":[
-				700,
-				400
-			],
-			"scale":1,
-			"angle":180
 		}
 	]
 }

@@ -26,11 +26,11 @@ namespace nc
 	{
 		if (m_body == nullptr)
 		{
-			m_body = m_owner->m_engine->GetSystem<PhysicsSystem>()->CreateBody(m_owner->m_transform.position, m_data, m_owner);
+			m_body = m_owner->m_engine->GetSystem<PhysicsSystem>()->CreateBody(m_owner->m_transform.position, m_owner->m_transform.angle, m_data, m_owner);
 		}
 
 		m_owner->m_transform.position = m_body->GetPosition();
-		m_owner->m_transform.angle = m_body->GetAngle();
+		m_owner->m_transform.angle = nc::RadiansToDegrees(m_body->GetAngle());
 	}
 
 	void RigidBodyComponent::SetForce(const Vector2& force)
