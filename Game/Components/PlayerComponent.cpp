@@ -42,7 +42,7 @@ namespace nc
 		RigidBodyComponent* component = m_owner->GetComponent<RigidBodyComponent>();
 		if (component)
 		{
-			component->SetForce(force);
+			component->ApplyForce(force);
 		}
 
 		// check for coin contact
