@@ -12,6 +12,9 @@
     <Filter Include="Components">
       <UniqueIdentifier>{5d8b9643-8268-42e4-a194-918a106fb6dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{4f737443-cb20-442d-9571-09048c13e8aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -20,10 +23,16 @@
     <ClCompile Include="Components\PlayerComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\PlayerComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

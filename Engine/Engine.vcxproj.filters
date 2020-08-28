@@ -36,6 +36,9 @@
     <Filter Include="Audio">
       <UniqueIdentifier>{fcaa94aa-7f47-4543-8d7b-b982cbfb9371}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Build">
+      <UniqueIdentifier>{59575d7f-18bd-40f3-a24f-c26eb731dce8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -229,7 +232,10 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\scene.txt">
-      <Filter>Source Files</Filter>
+      <Filter>Build</Filter>
+    </Text>
+    <Text Include="..\Build\tilemap.txt">
+      <Filter>Build</Filter>
     </Text>
   </ItemGroup>
 </Project>
