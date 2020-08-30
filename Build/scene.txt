@@ -63,34 +63,8 @@
     },
     {
       "type": "GameObject",
-      "name": "EnemyProto",
-      "position": [
-        40,
-        30
-      ],
-      "scale": 1,
-      "angle": 0,
-      "Components": [
-        {
-          "type": "SpriteComponent",
-          "z": 1,
-          "texture": "cars.png",
-          "origin": [
-            0.5,
-            0.5
-          ],
-          "rect": [
-            64,
-            110,
-            60,
-            112
-          ]
-        }
-      ]
-    },
-    {
-      "type": "GameObject",
       "name": "ProtoBox",
+      "tag": "Floor",
       "position": [
         400,
         500
@@ -108,8 +82,8 @@
           "rect": [
             0,
             0,
-            32,
-            32
+            48,
+            48
           ]
         },
         {
@@ -117,8 +91,8 @@
           "isDynamic": true,
           "lockAngle": false,
           "size": [
-            16,
-            16
+            24,
+            24
           ],
           "density": 1,
           "friction": 1,
