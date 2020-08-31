@@ -2,6 +2,7 @@
 #include "PlayerComponent.h"
 #include "Components/PhysicsComponent.h"
 #include "Components/AudioComponent.h"
+#include "Components/SpriteComponent.h"
 
 namespace nc
 {
@@ -39,11 +40,13 @@ namespace nc
 			}
 		}
 
-		PhysicsComponent* component = m_owner->GetComponent<PhysicsComponent>();
-		if (component)
-		{
-			component->ApplyForce(force);
-		}
+		PhysicsComponent* physicsComponent = m_owner->GetComponent<PhysicsComponent>();
+		physicsComponent->SetForce(force);
+		Vector2 velocity = physicsComponent->GetVelocity();
+		
+		SpriteComponent* spriteComponent = m_owner->GetComponent<SpriteComponent>();
+		if (velocity.x < -0.5f) spriteComponent->Flip();
+		if (velocity.x >  0.5f) spriteComponent->Flip(false);
 
 		// check collision
 		auto coinContacts = m_owner->GetContactsWithTag("Coin");
