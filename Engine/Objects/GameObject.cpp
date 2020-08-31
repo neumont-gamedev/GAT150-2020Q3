@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "GameObject.h"
+#include "Scene.h"
 #include "Components/Component.h"
 #include "Components/RenderComponent.h"
 
@@ -14,6 +15,7 @@ namespace nc
 
 		m_transform = other.m_transform;
 		m_engine = other.m_engine;
+		m_scene = other.m_scene;
 
 		for (auto component : other.m_components)
 		{
@@ -25,7 +27,8 @@ namespace nc
 
 	void GameObject::Create(void* data)
 	{
-		m_engine = static_cast<Engine*>(data);
+		m_scene = static_cast<Scene*>(data);
+		m_engine = m_scene->m_engine;
 	}
 
 	void GameObject::Destroy()

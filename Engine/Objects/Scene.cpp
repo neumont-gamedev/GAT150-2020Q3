@@ -50,7 +50,7 @@ namespace nc
 
 				if (gameObject)
 				{
-					gameObject->Create(m_engine);
+					gameObject->Create(this);
 					gameObject->Read(objectValue);
 
 					AddGameObject(gameObject);
@@ -72,7 +72,7 @@ namespace nc
 
 				if (gameObject)
 				{
-					gameObject->Create(m_engine);
+					gameObject->Create(this);
 					gameObject->Read(objectValue);
 
 					//std::cout << gameObject->m_name << std::endl;
