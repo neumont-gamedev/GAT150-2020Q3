@@ -41,7 +41,7 @@ namespace nc
 		}
 
 		PhysicsComponent* physicsComponent = m_owner->GetComponent<PhysicsComponent>();
-		physicsComponent->SetForce(force);
+		physicsComponent->ApplyForce(force);
 		Vector2 velocity = physicsComponent->GetVelocity();
 		
 		SpriteComponent* spriteComponent = m_owner->GetComponent<SpriteComponent>();

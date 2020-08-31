@@ -18,6 +18,7 @@ namespace nc
 				document.ParseStream(istream);
 				success = document.IsObject();
 				ASSERT_MSG(success, "Error invalid json file: " + filename);
+				stream.close();
 			}
 
 			return success;
