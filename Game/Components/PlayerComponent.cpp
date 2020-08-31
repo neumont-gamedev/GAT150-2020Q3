@@ -42,7 +42,7 @@ namespace nc
 		PhysicsComponent* component = m_owner->GetComponent<PhysicsComponent>();
 		if (component)
 		{
-			component->SetForce(force);
+			component->ApplyForce(force);
 		}
 
 		// check collision

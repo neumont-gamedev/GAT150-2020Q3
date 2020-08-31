@@ -2,6 +2,7 @@
 #include "ObjectFactory.h"
 #include "Math/Transform.h"
 #include "Engine.h"
+#include "Scene.h"
 #include <bitset>
 
 namespace nc
@@ -52,6 +53,7 @@ namespace nc
 		float m_lifetime{ 0 };
 
 		Transform m_transform;
+		Scene* m_scene{ nullptr };
 		Engine* m_engine{ nullptr };
 
 	protected:
