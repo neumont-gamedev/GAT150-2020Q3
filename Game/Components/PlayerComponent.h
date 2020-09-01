@@ -12,7 +12,8 @@ namespace nc
 
 		virtual void Update() override;
 
-		void CollisionEvent(GameObject* gameObject);
+		void OnCollisionEnter(const Event& event);
+		void OnCollisionExit(const Event& event);
 	};
 }
 

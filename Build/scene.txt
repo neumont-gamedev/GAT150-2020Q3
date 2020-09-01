@@ -275,6 +275,10 @@
         {
           "type": "PlayerComponent"
         },
+	{
+	  "type": "AudioComponent",
+	  "sound": "Jump"
+	},
         {
           "type": "SpriteAnimationComponent",
           "texture": "textures/player.png",
