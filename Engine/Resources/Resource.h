@@ -1,12 +1,12 @@
 #pragma once
-#include "pch.h"
+#include <string>
 
-class Resource
+namespace nc
 {
-public:
-	Resource() {}
-	virtual ~Resource() {}
-
-	virtual bool Create(const std::string& name) = 0;
-	virtual void Destroy() = 0;
-};
+	class Resource
+	{
+	public:
+		virtual bool Create(const std::string& name, void* data = nullptr) = 0;
+		virtual void Destroy() = 0;
+	};
+}
