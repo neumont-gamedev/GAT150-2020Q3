@@ -35,27 +35,16 @@ namespace nc
     {
         b2BodyDef bodyDef;
 
-<<<<<<< HEAD
-        Vector2 world = PhysicsSystem::ScreenToWorld(position);
-
-        bodyDef.type = (data.isDynamic) ? b2_dynamicBody : b2_staticBody;
-        bodyDef.position.Set(world.x, world.y);
-=======
         Vector2 worldPosition = ScreenToWorld(position);
 
         bodyDef.type = (data.isDynamic) ? b2_dynamicBody : b2_staticBody;
         bodyDef.position.Set(worldPosition.x, worldPosition.y);
->>>>>>> GAT150B
         bodyDef.angle = nc::DegreesToRadians(angle);
         bodyDef.fixedRotation = data.lockAngle;
         b2Body* body = m_world->CreateBody(&bodyDef);
-
-        Vector2 worldSize = ScreenToWorld(data.size);
+                
         b2PolygonShape shape;
-<<<<<<< HEAD
         Vector2 worldSize = PhysicsSystem::ScreenToWorld(data.size);
-=======
->>>>>>> GAT150B
         shape.SetAsBox(worldSize.x, worldSize.y);
 
         b2FixtureDef fixtureDef;
@@ -63,10 +52,6 @@ namespace nc
         fixtureDef.friction = data.friction;
         fixtureDef.restitution = data.restitution;
         fixtureDef.isSensor = data.isSensor;
-<<<<<<< HEAD
-=======
-        fixtureDef.userData = gameObject;
->>>>>>> GAT150B
         fixtureDef.shape = &shape;
         fixtureDef.userData = gameObject;
 

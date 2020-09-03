@@ -1,13 +1,8 @@
 #pragma once
 #include "Singleton.h"
 #include <string>
-<<<<<<< HEAD
 #include <map>
 #include <list>
-=======
-#include <list>
-#include <map>
->>>>>>> GAT150B
 #include <functional>
 
 namespace nc
@@ -41,7 +36,3 @@ namespace nc
 		std::map<std::string, std::list<Observer>> m_observers;
 	};
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> GAT150B

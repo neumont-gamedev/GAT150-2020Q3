@@ -112,15 +112,10 @@ namespace nc
 		m_contacts.push_back(other);
 
 		Event event;
-<<<<<<< HEAD
+
 		event.type = "CollisionEnter";
 		event.sender = other;
 		event.receiver = this;
-=======
-		event.sender = other;
-		event.receiver = this;
-		event.type = "CollisionEnter";
->>>>>>> GAT150B
 
 		EventManager::Instance().Notify(event);
 	}
@@ -130,15 +125,10 @@ namespace nc
 		m_contacts.remove(other);
 
 		Event event;
-<<<<<<< HEAD
+
 		event.type = "CollisionExit";
 		event.sender = other;
 		event.receiver = this;
-=======
-		event.sender = other;
-		event.receiver = this;
-		event.type = "CollisionExit";
->>>>>>> GAT150B
 
 		EventManager::Instance().Notify(event);
 	}

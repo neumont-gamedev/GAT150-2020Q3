@@ -12,18 +12,12 @@
 nc::Engine engine;
 nc::Scene scene;
 
-<<<<<<< HEAD
-void GameEvent(const nc::Event& event)
-{
-	std::cout << "Player Dead!!!!\n";
-=======
 void OnPlayerDead(const nc::Event& event)
 {
 	int* pdata = static_cast<int*>(event.data);
 	int score = *pdata;
 
 	std::cout << "Player Dead: " << score << std::endl;
->>>>>>> GAT150B
 }
 
 int main(int, char**)
@@ -35,39 +29,19 @@ int main(int, char**)
 	nc::ObjectFactory::Instance().Register("PlayerComponent", new nc::Creator<nc::PlayerComponent, nc::Object>);
 	nc::ObjectFactory::Instance().Register("EnemyComponent", new nc::Creator<nc::EnemyComponent, nc::Object>);
 
-<<<<<<< HEAD
-	nc::EventManager::Instance().Subscribe("PlayerDead", &GameEvent);
-=======
+
 	nc::EventManager::Instance().Subscribe("PlayerDead", &OnPlayerDead);
->>>>>>> GAT150B
 
 	rapidjson::Document document;
-	nc::json::Load("scene.txt", document);
+	nc::json::Load("scenes/scene.txt", document);
 	scene.Create(&engine);
 	scene.Read(document);
 
-<<<<<<< HEAD
+
 	nc::TileMap tileMap;
-	nc::json::Load("tileMap.txt", document);
-=======
-	nc::json::Load("tileMap.txt", document);
-	nc::TileMap tileMap;
->>>>>>> GAT150B
+	nc::json::Load("scenes/tileMap.txt", document);
 	tileMap.Read(document);
 	tileMap.Create(&scene);
-
-	//for (size_t i = 0; i < 10; i++)
-	//{
-	//	nc::GameObject* gameObject = nc::ObjectFactory::Instance().Create<nc::GameObject>("ProtoCoin");
-<<<<<<< HEAD
-	//	gameObject->m_transform.position = { nc::random(0, 800), nc::random(200, 400) };
-=======
-	//	gameObject->m_transform.position = { nc::random(0, 800), nc::random(300, 450) };
->>>>>>> GAT150B
-	//	//gameObject->m_transform.angle = nc::random(0, 360);
-
-	//	scene.AddGameObject(gameObject);
-	//}
 
 	SDL_Event event;
 	bool quit = false;

@@ -17,11 +17,8 @@ namespace nc
 				rapidjson::IStreamWrapper istream(stream);
 				document.ParseStream(istream);
 				success = document.IsObject();
-<<<<<<< HEAD
-				ASSERT_MSG(success, "Error json is not valid: " + filename);
-=======
 				ASSERT_MSG(success, "Error invalid json file: " + filename);
->>>>>>> GAT150B
+
 				stream.close();
 			}
 
