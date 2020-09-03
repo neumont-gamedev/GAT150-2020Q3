@@ -277,7 +277,7 @@
 				},
 				{
 					"type":"AudioComponent",
-					"sound":"Jump"
+					"sound":"audio/Jump"
 				},
 				{
 					"type":"SpriteAnimationComponent",

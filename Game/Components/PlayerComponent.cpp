@@ -42,7 +42,7 @@ namespace nc
 			AudioComponent* audioComponent = m_owner->GetComponent<AudioComponent>();
 			if (audioComponent)
 			{
-				audioComponent->SetSoundName("jump.wav");
+				audioComponent->SetSoundName("audio/jump.wav");
  				audioComponent->Play();
 			}
 		}
@@ -63,7 +63,7 @@ namespace nc
 		if (gameObject->m_tag == "Enemy")
 		{
 			AudioComponent* audioComponent = m_owner->GetComponent<AudioComponent>();
-			audioComponent->SetSoundName("grunt.wav");
+			audioComponent->SetSoundName("audio/grunt.wav");
 			audioComponent->Play();
 
 			//m_owner->m_flags[GameObject::eFlags::DESTROY] = true;
@@ -78,7 +78,7 @@ namespace nc
 		if (gameObject->m_tag == "Coin")
 		{
 			AudioComponent* audioComponent = m_owner->GetComponent<AudioComponent>();
-			audioComponent->SetSoundName("coin.wav");
+			audioComponent->SetSoundName("audio/coin.wav");
 			audioComponent->Play();
 
 			gameObject->m_flags[GameObject::eFlags::DESTROY] = true;
