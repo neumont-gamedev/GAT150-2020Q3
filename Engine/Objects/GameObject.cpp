@@ -108,11 +108,25 @@ namespace nc
 	void GameObject::BeginContact(GameObject* other)
 	{
 		m_contacts.push_back(other);
+
+		Event event;
+		event.sender = other;
+		event.receiver = this;
+		event.type = "CollisionEnter";
+
+		EventManager::Instance().Notify(event);
 	}
 
 	void GameObject::EndContact(GameObject* other)
 	{
 		m_contacts.remove(other);
+
+		Event event;
+		event.sender = other;
+		event.receiver = this;
+		event.type = "CollisionExit";
+
+		EventManager::Instance().Notify(event);
 	}
 
 	std::vector<GameObject*> GameObject::GetContactsWithTag(const std::string& tag)

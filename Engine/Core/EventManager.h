@@ -1,6 +1,5 @@
 #pragma once
 #include "Singleton.h"
-#include "Objects/Object.h"
 #include <string>
 #include <list>
 #include <map>
@@ -8,41 +7,33 @@
 
 namespace nc
 {
+	class Object;
+
 	struct Event
 	{
 		std::string type;
-		Object* sender;
+		Object* sender{ nullptr };
+		Object* receiver{ nullptr };
 		void* data;
 	};
 
-	class EventSystem : public Singleton<EventSystem>
+	class EventManager : public Singleton<EventManager>
 	{
 	public:
 		using function_t = std::function<void(const Event&)>;
-		using handle_t = size_t;
 
 		struct Observer
 		{
 			function_t function;
-			handle_t handle;
-
-			bool operator == (const Observer& other) const
-			{
-				return handle == other.handle;
-			}
+			Object* owner{ nullptr };
 		};
 
 	public:
-		handle_t Subscribe(const std::string& id, function_t function);
-		void Unsubscribe(const handle_t& handle);
-
+		void Subscribe(const std::string& type, function_t function, Object* owner = nullptr);
 		void Notify(const Event& event);
 
 	private:
-		EventSystem() {}
-
-	private:
 		std::map<std::string, std::list<Observer>> m_observers;
-		static size_t ms_handle;
 	};
 }
+

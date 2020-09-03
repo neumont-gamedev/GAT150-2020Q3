@@ -149,7 +149,7 @@
     <ClInclude Include="Physics\ContactListener.h">
       <Filter>Physics</Filter>
     </ClInclude>
-    <ClInclude Include="Core\EventSystem.h">
+    <ClInclude Include="Core\EventManager.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
@@ -229,7 +229,7 @@
     <ClCompile Include="Physics\ContactListener.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
-    <ClCompile Include="Core\EventSystem.cpp">
+    <ClCompile Include="Core\EventManager.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>

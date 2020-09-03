@@ -275,6 +275,11 @@
         {
           "type": "PlayerComponent"
         },
+	{
+	  "type": "AudioComponent",
+	  "sound": "jump.wav",
+	  "playOnAwake": true
+	},
         {
           "type": "SpriteAnimationComponent",
           "numX": 8,
