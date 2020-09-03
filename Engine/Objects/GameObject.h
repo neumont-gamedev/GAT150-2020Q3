@@ -2,6 +2,7 @@
 #include "ObjectFactory.h"
 #include "Math/Transform.h"
 #include "Engine.h"
+#include "Scene.h"
 #include <bitset>
 #include <list>
 
@@ -54,7 +55,11 @@ namespace nc
 		float m_lifetime{ 0 };
 
 		Transform m_transform;
+<<<<<<< HEAD
 
+=======
+		Scene* m_scene{ nullptr };
+>>>>>>> GAT150B
 		Engine* m_engine{ nullptr };
 		Scene* m_scene{ nullptr };
 

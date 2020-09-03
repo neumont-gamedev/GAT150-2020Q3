@@ -50,14 +50,22 @@
           "type": "RigidBodyComponent",
           "isDynamic": false,
           "isSensor": true,
+<<<<<<< HEAD
           "lockAngle": true,
+=======
+          "lockAngle": false,
+>>>>>>> GAT150B
           "size": [
             16,
             16
           ],
           "density": 1,
           "friction": 1,
+<<<<<<< HEAD
           "restitution": 0.7
+=======
+          "restitution": 0
+>>>>>>> GAT150B
         }
       ]
     },
@@ -74,6 +82,12 @@
       "angle": 0,
       "Components": [
         {
+<<<<<<< HEAD
+=======
+          "type": "EnemyComponent"
+        },
+        {
+>>>>>>> GAT150B
           "type": "SpriteAnimationComponent",
           "texture": "textures/bat.png",
           "origin": [
@@ -86,6 +100,7 @@
           "fps": 10
         },
         {
+<<<<<<< HEAD
           "type": "EnemyComponent"
         },
         {
@@ -93,14 +108,27 @@
           "isDynamic": true,
           "isSensor": true,
           "lockAngle": true,
+=======
+          "type": "RigidBodyComponent",
+          "isDynamic": true,
+          "isSensor": true,
+          "lockAngle": false,
+>>>>>>> GAT150B
           "size": [
             16,
             16
           ],
+<<<<<<< HEAD
           "density": 1,
           "friction": 1,
           "restitution": 0.7,
           "gravityScale": 0.0
+=======
+          "density": 2,
+          "friction": 1,
+          "restitution": 0,
+          "gravityScale": 0
+>>>>>>> GAT150B
         }
       ]
     },
@@ -117,7 +145,11 @@
       "Components": [
         {
           "type": "SpriteComponent",
+<<<<<<< HEAD
           "texture": "crate.png",
+=======
+          "texture": "textures/crate.png",
+>>>>>>> GAT150B
           "origin": [
             0.5,
             0.5
@@ -125,8 +157,13 @@
           "rect": [
             0,
             0,
+<<<<<<< HEAD
             32,
             32
+=======
+            48,
+            48
+>>>>>>> GAT150B
           ]
         },
         {
@@ -134,8 +171,13 @@
           "isDynamic": true,
           "lockAngle": false,
           "size": [
+<<<<<<< HEAD
             16,
             16
+=======
+            24,
+            24
+>>>>>>> GAT150B
           ],
           "density": 1,
           "friction": 1,
@@ -181,6 +223,7 @@
           "restitution": 0
         }
       ]
+<<<<<<< HEAD
     }
   ],
   "GameObjects": [
@@ -190,20 +233,38 @@
       "position": [
         0,
         0
+=======
+    },
+    {
+      "type": "GameObject",
+      "name": "Tile02",
+      "tag": "Floor",
+      "position": [
+        400,
+        500
+>>>>>>> GAT150B
       ],
       "scale": 1,
       "angle": 0,
       "Components": [
         {
           "type": "SpriteComponent",
+<<<<<<< HEAD
           "texture": "textures/background.png",
           "origin": [
             0,
             0
+=======
+          "texture": "textures/tile02.png",
+          "origin": [
+            0.5,
+            0.5
+>>>>>>> GAT150B
           ],
           "rect": [
             0,
             0,
+<<<<<<< HEAD
             800,
             600
           ]
@@ -217,21 +278,57 @@
       "position": [
         400,
         500
+=======
+            64,
+            64
+          ]
+        },
+        {
+          "type": "RigidBodyComponent",
+          "isDynamic": false,
+          "lockAngle": false,
+          "size": [
+            32,
+            32
+          ],
+          "density": 1,
+          "friction": 1,
+          "restitution": 0
+        }
+      ]
+    }
+  ],
+  "GameObjects": [
+    {
+      "type": "GameObject",
+      "name": "Background",
+      "position": [
+        0,
+        0
+>>>>>>> GAT150B
       ],
       "scale": 1,
       "angle": 0,
       "Components": [
         {
           "type": "SpriteComponent",
+<<<<<<< HEAD
           "texture": "ground.png",
           "origin": [
             0.5,
             1.5
+=======
+          "texture": "textures/background.png",
+          "origin": [
+            0,
+            0
+>>>>>>> GAT150B
           ],
           "rect": [
             0,
             0,
             800,
+<<<<<<< HEAD
             32
           ]
         },
@@ -246,6 +343,10 @@
           "density": 1,
           "friction": 1,
           "restitution": 0
+=======
+            600
+          ]
+>>>>>>> GAT150B
         }
       ]
     },
@@ -268,7 +369,11 @@
             32
           ],
           "density": 1,
+<<<<<<< HEAD
           "friction": 4,
+=======
+          "friction": 1,
+>>>>>>> GAT150B
           "restitution": 0,
           "gravityScale": 2
         },
@@ -277,19 +382,35 @@
         },
 	{
 	  "type": "AudioComponent",
+<<<<<<< HEAD
 	  "sound": "Jump"
 	},
         {
           "type": "SpriteAnimationComponent",
+=======
+	  "sound": "jump.wav",
+	  "playOnAwake": true
+	},
+        {
+          "type": "SpriteAnimationComponent",
+          "numX": 8,
+          "numY": 1,
+          "numFrames": 8,
+          "fps": 15,
+>>>>>>> GAT150B
           "texture": "textures/player.png",
           "origin": [
             0.5,
             0.5
+<<<<<<< HEAD
           ],
           "numX": 8,
           "numY": 1,
           "numFrames": 8,
           "fps": 15
+=======
+          ]
+>>>>>>> GAT150B
         }
       ]
     }

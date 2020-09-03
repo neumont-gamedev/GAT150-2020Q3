@@ -13,7 +13,11 @@
       <UniqueIdentifier>{5d8b9643-8268-42e4-a194-918a106fb6dd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Build">
+<<<<<<< HEAD
       <UniqueIdentifier>{1910162d-e3e8-40db-be89-c15d1add6b0e}</UniqueIdentifier>
+=======
+      <UniqueIdentifier>{f1f76c8a-3531-4514-aa10-cf2bc6f09e58}</UniqueIdentifier>
+>>>>>>> GAT150B
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -14,3 +14,7 @@ namespace nc
 	};
 }
 
+<<<<<<< HEAD
+=======
+#pragma once
+>>>>>>> GAT150B

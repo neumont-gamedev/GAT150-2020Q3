@@ -10,4 +10,7 @@ namespace nc
 		void EndContact(b2Contact* contact) override;
 	};
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> GAT150B

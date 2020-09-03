@@ -14,7 +14,11 @@ namespace nc
 		virtual void Update() override;
 
 		virtual void ApplyForce(const Vector2& force) { m_force = force; }
+<<<<<<< HEAD
 		virtual Vector2& GetVelocity() { return m_velocity; }
+=======
+		virtual Vector2 GetVelocity() { return m_velocity; }
+>>>>>>> GAT150B
 
 	protected:
 		Vector2 m_velocity;

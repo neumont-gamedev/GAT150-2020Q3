@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include <time.h>
 
+
 namespace nc
 {
 	bool Engine::Startup()
